@@ -4,12 +4,7 @@
 #+HTML_LINK_HOME: http://nmmull.github.io
 | Title    | Rust, in Practice and in Theory |
 | Location | Boston University               |
-| Semester | Spring 2025                     |
-This is a course about the PL Rust.  We'll spend the first half of
-this course learning how to program in Rust, then we'll shift to
-/implementing/ a subset of Rust /in/ Rust based on [[https://dl.acm.org/doi/10.1145/3443420][a very nice
-calculus]] defined by David J. Pearce.  See the [[file:schedule.org][schedule]] and [[file:Syllabus/syllabus.org][syllabus]]
-for more details.
+| Semester | Fall 2025                       |
 * Pages
 + [[file:schedule.org][Schedule (Full)]]
 + [[file:material.org][Material]]
