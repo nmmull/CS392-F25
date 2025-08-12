@@ -1,0 +1,378 @@
+#+title: Schedule
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="myStyle.css" />
+#+OPTIONS: html-style:nil H:2 toc:1 num:nil
+#+HTML_LINK_HOME: index.html
+* Week 1: Basics
+** TUE 01-21 Lecture 1
+:PROPERTIES:
+:CUSTOM_ID: 01-21
+:END:
+*** Title: *Course Introduction*
+*** Topics:
++ Discuss the course structure, expectations, etc.
++ Briefly talk about Rust
++ Install Rust and Cargo
++ Set up our first Cargo project
+*** Reading:
++ Syllabus
++ The Rust Programming Language (RPL): [[https://doc.rust-lang.org/book/foreword.html][Forward]]
++ RPL: [[https://doc.rust-lang.org/book/ch00-00-introduction.html][Introduction]]
++ RPL 1: [[https://doc.rust-lang.org/book/ch01-00-getting-started.html][Getting Started]]
++ Course Notes (CN) 1: [[file:notes.org::#intro][What is this course?]]
++ CN 2: [[file:notes.org::#set-up][Set up]]
+*** Discussion Questions:
++ Why are you taking this course?  What do you want to get out of it?
++ Have you heard of Rust before this course?
++ Do you like using a low-level programming language like C?
+** THU 01-23 Lecture 2
+:PROPERTIES:
+:CUSTOM_ID: 01-23
+:END:
+*** Title: *Basic Programming*
+*** Topics:
++ Reminder ourselves how to read BNF grammars
++ Do some "normal" programming with Rust
++ Look more carefully at the grammar of Rust
+*** Reading:
++ RPL 2: [[https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html][Programming a Guessing Game]]
++ RPL 3: [[https://doc.rust-lang.org/book/ch03-00-common-programming-concepts.html][Common Programming Concepts]]
++ CN 3: [[file:notes.org::#basics][The Basics]]
++ PL@BU 2: [[https://nmmull.github.io/PL-at-BU/Formal-Grammar/notes.html][Formal Grammar]]
+*** Discussion Questions:
++ How well does Python or C++ programming transfer to basic Rust
+  programming?  Do you feel you could write any program on integers in
+  Rust that you could already write in Python?  Why or why not?
++ One somewhat strange feature of Rust's parser is that it allows
+  trailing commas.  Why do you think this is?
++ Are there features you wish Rust had?  Are there features it has
+  (that we've seen so far) that you don't like?
+* Week 2: Ownership
+** TUE 01-28 Lecture 3
+:PROPERTIES:
+:CUSTOM_ID: 01-28
+:END:
+*** Title: *The Stack and Heap*
+*** Topics:
++ Determine the role of the stack and the heap in a systems PL, and
+  how these things affect how we use Rust
++ Look at a couple ways of managing memory
+*** Reading:
++ RPL 4.1: [[https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html][What is Ownership?]]
++ CN 4.1: [[file:notes.org::#stack_and_heap][Stack and Heap]]
+*** Discussion Questions:
++ Why do we have to know the size of data that will be put on the
+  stack at compile time?
++ What are the benefits of Rust's ownership model over automatic
+  reference counting? What are the downsides?
++ What about the tradeoffs between reference counting and garbage
+  collection?
+** THU 01-30 Lecture 4
+:PROPERTIES:
+:CUSTOM_ID: 01-30
+:END:
+*** Title: *References and Borrowing*
+*** Topics:
++ Look more carefully at Rust's borrow system
++ See some examples of things we /can't/ do according to Rust's borrow
+  checker
+*** Reading:
++ RPL 4.2: [[https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html][References and Borrowing]]
+*** Discussion Questions:
++ How do references relate to pointers?
++ Is it worthwhile to enforce a single mutable reference if you aren't
+  interested in concurrency?
++ How might you think of visualizing ownership and borrowing? (There
+  are a couple existing tools to do this, but I think there's still
+  room for improvement.)
+* Week 3: Data
+** TUE 02-04 Lecture 5
+:PROPERTIES:
+:CUSTOM_ID: 02-04
+:END:
+*** Title: *Structures and Enumerations*
+*** Topics:
++ Cover structures (product types) and enumerations (union types) in
+  Rust
++ Look at how Rust's borrow system interacts with more complex data
+*** Reading:
++ RPL 5: [[https://doc.rust-lang.org/book/ch05-00-structs.html][Using Structs to Structure Related Data]]
++ PRL 6: [[https://doc.rust-lang.org/book/ch06-00-enums.html][Enums and Pattern Matching]]
++ RPL 18: [[https://doc.rust-lang.org/book/ch18-00-patterns.html][Patterns and Matching]]
+*** Discussion Questions (from Piazza):
++ What is the difference between matching-expressions and nested
+  if-expressions? What are the tradeoffs?
++ How are enumerations and structures laid out in memory?
++ Is it possible to define structures with immutable fields?
++ When should a structure store it's own data or references to other data?
+** THU 02-06 Lecture 6
+:PROPERTIES:
+:CUSTOM_ID: 02-06
+:END:
+*** Title: *Collections and Slices*
+*** Topics:
++ Cover vectors and hash maps in Rust (they are very similar to data
+  structures in other PLs, modulo the interaction with the borrow
+  system)
+*** Reading:
++ RPL 4.3: [[https://doc.rust-lang.org/book/ch04-03-slices.html][The Slice Type]]
++ RPL 8: [[https://doc.rust-lang.org/book/ch08-00-common-collections.html][Common Collections]]
+*** Discussion Questions (from Piazza):
++ How does string concatenation work?  What does ~push_str~ do and who
+  owns what data after it's called?
++ Why does Rust implement deref coercion?
++ It is possible to replace a value in a vectors and take ownership of
+  the original value?
+* Week 4: Functions
+** TUE 02-11 Lecture 7
+:PROPERTIES:
+:CUSTOM_ID: 02-11
+:END:
+*** Title: *Generics and Traits*
+*** Topics:
++ Look at how to write polymorphic functions with generics
++ Learn how to restrict generic using traits to write general code
+  against an explicit interface
+*** Reading:
++ RPL 10.1: [[https://doc.rust-lang.org/book/ch10-01-syntax.html][Generic Data Types]]
++ RPL 10.2: [[https://doc.rust-lang.org/book/ch10-02-traits.html][Traits: Defining Shared Behavior]]
+*** Discussion Question (from Piazza):
++ Does using generics impact performance?
++ What are the differences between the different trait parameter
+  syntax?
++ How are traits different from interfaces?
+** THU 02-13 Lecture 8
+:PROPERTIES:
+:CUSTOM_ID: 02-13
+:END:
+*** Title: *Closures and Iterators*
+*** Topics:
++ Anonymous functions in Rust which capture their environment
++ Iterators as a "zero-overhead abstraction" for processing
+  collections of data
+*** Reading:
++ RPL 13: [[https://doc.rust-lang.org/book/ch13-00-functional-features.html][Functional Language Features: Iterators and Closures]]
+*** Discussion Questions (from Piazza)
++ Are there safety/performance advantages to using iterators versus loops?
++ Can we define polymoprhic closures? Why or why not?
++ When do we need explicit type annotations on closures?
+* Week 5: Lifetimes
+** THU 02-20 Lecture 9
+:PROPERTIES:
+:CUSTOM_ID: 02-20
+:END:
+*** Title: *Lifetimes*
+*** Topics:
++ Define lifetimes and determine when we need explicit lifetime
+  annotations
++ Discuss the relationship between lifetimes and references
+*** Reading:
++ RPL 10.3: [[https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html][Validating References with Lifetimes]]
++ Rustonomicon:
+  + 3.2: [[https://doc.rust-lang.org/nomicon/aliasing.html][Aliasing]]
+  + 3.3: [[https://doc.rust-lang.org/nomicon/lifetimes.html][Lifetimes]]
+  + 3.4: [[https://doc.rust-lang.org/nomicon/lifetime-mismatch.html][Limits of Lifetimes]]
+  + 3.5: [[https://doc.rust-lang.org/nomicon/lifetime-elision.html][Lifetime Elision]]
+*** Discussion Questions (from Piazza):
++ Do lifetime annotations have any effects on efficienty/safety? Do
+  they provide additional functionality?
++ How do lifetimes affect the type theory of Rust?
+* Week 6: Smart Pointers
+** TUE 02-25 Lecture 10
+:PROPERTIES:
+:CUSTOM_ID: 02-25
+:END:
+*** Title: *Boxes and Recursive Data*
+*** Topics:
++ Boxes and Type Layouts
++ Using the ~Deref~ trait to simplify working with boxed data
+*** Reading:
++ RPL 15.1: [[https://doc.rust-lang.org/stable/book/ch15-01-box.html][Using ~Box<T>~ to Point to Data on the Heap]]
++ RPL 15.2: [[https://doc.rust-lang.org/stable/book/ch15-02-deref.html][Treating Smart Pointers Like Regular References with the ~Deref~ Trait]]
++ Rustonomicon 2.1: [[https://doc.rust-lang.org/nomicon/repr-rust.html][repr(Rust)]]
++ The Rust Reference 10.3: [[https://doc.rust-lang.org/reference/type-layout.html][Type Layout]]
+*** Discussion Questions (from Piazza):
++ When do we /not/ use a Box?
++ Why doesn't Rust automatically box data for recursive data types?
++ Can we define circular data structures with boxes?
+** THU 02-27 Lecture 11
+:PROPERTIES:
+:CUSTOM_ID: 02-27
+:END:
+*** Title: *Reference Counting and Internal Mutability*
+*** Topics:
+*** Reading:
++ RPL 15.4: [[https://doc.rust-lang.org/stable/book/ch15-04-rc.html][~Rc<T>~, the Reference Counted Smart Pointer]]
++ RPL 15.5: [[https://doc.rust-lang.org/stable/book/ch15-05-interior-mutability.html][~RefCell<T>~ and the Interior Mutability Pattern]]
++ RPL 15.6: [[https://doc.rust-lang.org/stable/book/ch15-06-reference-cycles.html][Reference Cycles Can Leak Memory]]
+*** Discussion Questions (from Piazza):
++ Is it possible to create a circular reference without ~RefCell<T>~?
++ What exactly does "safe" and "unsafe" mean?
++ Why do we have both ~Arc<T>~ and ~Rc<T>~ in Rust? Why not just
+  implement reference counting atomically for all use cases?
+* Week 7: Midterm
+** TUE 03-04 Lecture 12
+:PROPERTIES:
+:CUSTOM_ID: 03-04
+:END:
+*** Title: *Primer on Concurrency (+ Midterm Prep)*
+*** Topics:
++ Look very briefly at how Rust handles message-passing concurrency
+  and shared-state concurrency
+*** Reading:
++ RPL 16: [[https://doc.rust-lang.org/stable/book/ch16-00-concurrency.html][Fearless Concurrency]]
+** THU 03-06 Midterm Exam
+:PROPERTIES:
+:CUSTOM_ID: 03-06
+:END:
++ [[file:Assignments/Midterm/midterm.zip][midterm.zip]]
+* Week 8: Theory
+** TUE 03-18 Lecture 13
+:PROPERTIES:
+:CUSTOM_ID: 03-18
+:END:
+*** Title: *Primer on Proof/Type Theory*
+*** Topics:
++ Introduce the notion of a /formal system/ and its use in defining
+  proof/type systems
++ Show how to prove meta-theoretic properties about proof/type systems
++ Discuss the /Curry-Howard isomorphism/, a deep connection between
+  proof theory and type theory (that allows us to think of them as
+  essentially the same thing)
+*** Reading:
++ [[https://mathweb.ucsd.edu/~sbuss/ResearchWeb/handbookI/ChapterI.pdf][An Introduction to Proof Theory]] (pg. 1-5, 10-18, 64-70)
++ [[https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf][A taste of linear logic]] (§1-3)
++ /Optional:/ [[https://plato.stanford.edu/entries/proof-theory/][Proof Theory (SEP)]]
+** THU 03-20 Lecture 14
+:PROPERTIES:
+:CUSTOM_ID: 03-20
+:END:
+*** Title: *Substructural Proof/Type Theory*
+*** Topics:
++ Look at the way that structural rules affect the meta-theoretic
+  properties of a proof/type system
++ Focus on /linearity/ and see how it connects to Rust
+*** Reading:
++ [[https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf][A taste of linear logic]] (§4-5)
++ [[https://www.cs.cmu.edu/~janh/courses/814/24/lectures/lecture19.pdf][Lecture Notes on Substructural Type Systems]]
+* Week 9: Interpreters
+** TUE 03-25 Lecture 15
+:PROPERTIES:
+:CUSTOM_ID: 03-25
+:END:
+*** Title: *Workshop: An Interpreter for LTLC*
+*** Topics:
++ Build an interpreter for the linear typed λ-calculus
++ Discuss how to translate theoretical specifications into
+  implementations
+** THU 03-27 Lecture 16
+:PROPERTIES:
+:CUSTOM_ID: 03-27
+:END:
+*** Title: *Featherweight Rust: An Introduction*
+*** Topics:
++ Introduce /featherweight rust/ (FR), the system we will study for
+  the remainder to the course
++ Motivate the design of the system
++ Discuss /fuzz testing/ as an application of building interpreters
+*** Reading:
++ [[https://dl.acm.org/doi/10.1145/3443420][A Lightweight Formalism
+  for Reference Lifetimes and Borrowing in Rust]] (LFR) (pg. 1-14, 36-40)
+* Week 10: FR Semantics
+** TUE 04-01 Lecture 17
+:PROPERTIES:
+:CUSTOM_ID: 04-01
+:END:
+*** Title: *Featherweight Rust: Small-Step Semantics*
+*** Topics:
++ Introduce the small-step semantics of FR
++ Focus on the mathematical structures we need to define this system
+*** Reading:
++ [[https://dl.acm.org/doi/10.1145/3443420][LFR]] (pg. 14-19)
+** THU 04-03 Lecture 18
+:PROPERTIES:
+:CUSTOM_ID: 04-03
+:END:
+*** Title: *Workshop: An Evaluator*
+*** Topics:
++ Finish our discussion on the small-step semantics of FR
++ Look at the structure of an evaluator for FR
++ Start the process of builidng an evaluator
+* Week 11: FR Borrow Checking
+** TUE 04-08 Lecture 19
+:PROPERTIES:
+:CUSTOM_ID: 04-08
+:END:
+*** Title: *Featherweight Rust: Type and Borrow System*
+*** Topics:
++ Introduce the /flow-sensitive/ type/borrow system of FR
++ Focus on the mathematical structures we need to define this system
+*** Reading:
++ [[https://dl.acm.org/doi/10.1145/3443420][LFR]] (pg. 19-27)
+** THU 04-10 Lecture 20
+:PROPERTIES:
+:CUSTOM_ID: 04-10
+:END:
+*** Title: *Workshop: An Type/Borrow Checker*
+*** Topics:
++ Finish our discussion of the type/borrow system of FR
++ Start the process of building a type/borrow checker for FR
+* Week 12: FR Extensions
+** TUE 04-15 Lecture 21
+:PROPERTIES:
+:CUSTOM_ID: 04-15
+:END:
+*** Title: *Featherweight Rust: Extensions*
+*** Topics:
++ Look at some of the things we can add FR to make it more "realistic"
++ Look briefly at other systems similar to FR
+*** Reading:
++ [[https://dl.acm.org/doi/10.1145/3443420][LFR]] (pg. 40-52)
+** THU 04-17 Lecture 22
+:PROPERTIES:
+:CUSTOM_ID: 04-17
+:END:
+*** Title: *Workshop: Extensions*
+*** Topics:
++ Finish our discussion of possible extensions to FR
++ Look briefly at how to implement these extensions
++ Work on the final project
+* Week 13: FR Soundness I
+** TUE 04-22 Lecture 23
+:PROPERTIES:
+:CUSTOM_ID: 04-22
+:END:
+*** Title: *Featherweight Rust: Progress and Preservation*
+*** Topics:
++ Prove progress and preservation for FR
++ Discuss how to "read between the lines" when reading academic
+  white-paper proofs
+*** Reading:
++ [[https://dl.acm.org/doi/10.1145/3443420][LFR]] (pg. 27-31, 62-67)
+** THU 04-24 Lecture 24
+:PROPERTIES:
+:CUSTOM_ID: 04-24
+:END:
+*** Title: *Workshop: FR Syntax*
+*** Topics:
++ Discuss the AST of FR in Rust
++ Begin the process of building a parser for FR
+
+* Week 14: FR Soundness II
+** TUE 04-29 Lecture 25
+:PROPERTIES:
+:CUSTOM_ID: 04-29
+:END:
+*** Title: *Featherweight Rust: Type and Borrow Safety*
+*** Topics: Prove type and borrow safety for FR
+*** Reading:
++ [[https://dl.acm.org/doi/10.1145/3443420][LFR]] (pg. 27-31, 62-67)
+** TUE 05-01 Lecture 26
+:PROPERTIES:
+:CUSTOM_ID: 05-01
+:END:
+*** Title: *Termination of Borrow Checking*
+*** Topics:
++ Look at a subtlety of the FR borrow checker we built
++ Conclude the course and discuss possible next steps
+*** Reading:
++ [[https://whileydave.com/publications/PPS22_NFM_preprint.pdf][On the Termination of Borrow Checking in Featherweight Rust]]
