@@ -32,6 +32,7 @@ an adjacent topics.
   + [[https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf][A taste of linear logic]]
   + [[https://dl.acm.org/doi/10.1145/3443420][A Lightweight Formalism for Reference Lifetimes and Borrowing in Rust]]
 + Other Resources:
+  + [[https://doc.rust-lang.org/std/index.html][Rust Standard Library]]
   + [[https://github.com/rustviz/rustviz][RustViz]]
 * Calendar
 |-------+---------------------------------------------+-------------------------|
