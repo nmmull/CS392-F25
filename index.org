@@ -20,7 +20,7 @@ Rust, and the second half working on a self-defined project in Rust or
 an adjacent topics.
 
 * Links
-+ Course Manual
++ [[file:Syllabus/main.pdf][Course Manual]]
 + [[https://piazza.com/class/mex7r1jygw53ka/][Piazza]]
 + [[https://www.gradescope.com/courses/1109910][Gradescope]]
 + Reading:
