@@ -10,7 +10,6 @@
 *.DS_Store
 *.swp
 .direnv
-main.pdf
 ltximg
 MAlonzo
 elm-stuff
