@@ -1,67 +1,189 @@
 #+title: CAS CS 392
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="myStyle.css" />
-#+OPTIONS: html-style:nil H:2 toc:nil num:nil
+#+OPTIONS: html-style:nil H:2 toc:1 num:nil
 #+HTML_LINK_HOME: http://nmmull.github.io
 | Rust, in Practice and in Theory |
 | Boston University               |
 | Fall 2025                       |
-* Pages
-+ [[file:Syllabus/syllabus.org][Syllabus]]
-+ [[file:schedule.org][Schedule (Full)]]
+This is a course about the programming language Rust, and, for better
+or for worse, this can mean a lot of things.  Part of what making Rust
+fascinating (and what makes this course a pain to teach) is that it has a
+lot to offer.  You might be coming to this course with an interest in
+systems programming (an unreasonbly broad term), or PL design (ditto).
+Regardless, our goal is to not just to program in Rust, but also to
+understand the theoretical underpinnings of the language. So in
+reality you'll probably need to have at least a passing interest in
+both perspectives.
+
+We'll spend the first half of this course learning how to program in
+Rust, and the second half working on a self-defined project in Rust or
+an adjacent topics.
+
 * Links
-+ Piazza
-+ Gradescope
++ Course Manual
++ [[https://piazza.com/class/mex7r1jygw53ka/][Piazza]]
++ [[https://www.gradescope.com/courses/1109910][Gradescope]]
 + Reading:
   + [[https://doc.rust-lang.org/stable/book/][The Rust Programming Language]]
   + [[https://doc.rust-lang.org/stable/rust-by-example/index.html][Rust by Example]]
+  + [[https://doc.rust-lang.org/nomicon/intro.html][Rustonomicon]]
+  + [[https://rust-unofficial.github.io/too-many-lists/index.html][Learning Rust With Entirely Too Many Linked Lists]]
+  + [[https://doc.rust-lang.org/reference/][The Rust Reference]]
   + [[https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf][A taste of linear logic]]
   + [[https://dl.acm.org/doi/10.1145/3443420][A Lightweight Formalism for Reference Lifetimes and Borrowing in Rust]]
-* Schedule (Overview)
-|-------+-----------------------------------------------+-----------------|
-| Date  | Topic                                         | Notes           |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#01-21][01-21]] | Basics I: Introduction, Installation, Cargo   |                 |
-| [[file:schedule.org::#01-23][01-23]] | Basics II: Common Programming Concepts        | A1 out          |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#01-28][01-28]] | Ownership I: The Stack and Heap               |                 |
-| [[file:schedule.org::#01-30][01-30]] | Ownership II: References, Borrowing           | A2 out, A1 due  |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#02-04][02-04]] | Data I: Structures, Enumerations              |                 |
-| [[file:schedule.org::#02-06][02-06]] | Data II: Collections, Slices                  | A3 out, A2 due  |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#02-11][02-11]] | Functions I: Generics and Traits              |                 |
-| [[file:schedule.org::#02-13][02-13]] | Functions II: Closures, Iterators             | A4 out, A3 due  |
-|-------+-----------------------------------------------+-----------------|
-| 02-18 | *NO CLASS*                                    | Presidents' Day |
-| [[file:schedule.org::#02-20][02-20]] | Lifetimes                                     |                 |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#02-25][02-25]] | Smart Pointers I: Boxes, Recursive Data       |                 |
-| [[file:schedule.org::#02-27][02-27]] | Smart Pointers II: ~Rc<T>~ and ~RefCell<T>~   | A4 due          |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#03-04][03-04]] | Advanced: Primer on Concurrency               |                 |
-| [[file:schedule.org::#03-06][03-06]] | *Midterm Exam*                                | A5 out          |
-|-------+-----------------------------------------------+-----------------|
-| 03-11 | *NO CLASS*                                    | Spring Recess   |
-| 03-13 | *NO CLASS*                                    | Spring Recess   |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#03-18][03-18]] | Theory I: Primer on Proof/Type Theory         |                 |
-| [[file:schedule.org::#03-20][03-20]] | Theory II: Substructural Proof/Type Theory    | A6 out, A5 due  |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#03-25][03-25]] | Workshop: An Interpreter for LTLC             |                 |
-| [[file:schedule.org::#03-27][03-27]] | FR Calculus I: Introduction                   | A7 out, A6 due  |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#04-01][04-01]] | FR Calculus II: Small-Step Semantics          |                 |
-| [[file:schedule.org::#04-03][04-03]] | Workshop: An Evaluator                        | FP out, A7 due  |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#04-08][04-08]] | FR Calculus III: Type and Borrow System       |                 |
-| [[file:schedule.org::#04-10][04-10]] | Workshop: A Type/Borrow Checker               | FP part 1 due   |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#04-15][04-15]] | FR Calculus IV: Extensions                    |                 |
-| [[file:schedule.org::#04-17][04-17]] | Workshop: Extensions                          | FP part 2 due   |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#04-22][04-22]] | Soundness I: Progress and Preservation        |                 |
-| [[file:schedule.org::#04-24][04-24]] | Workshop: Final Project Check-in              | FP part 3 due   |
-|-------+-----------------------------------------------+-----------------|
-| [[file:schedule.org::#04-29][04-29]] | Soundness II: Type and Borrow Safety          |                 |
-| [[file:schedule.org::#05-01][05-01]] | Soundness III: Termination of Borrow Checking | FP due          |
-|-------+-----------------------------------------------+-----------------|
++ Other Resources:
+  + [[https://github.com/rustviz/rustviz][RustViz]]
+* Calendar
+|-------+---------------------------------------------+-------------------------|
+| Date  | Topic                                       | Notes                   |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 1][09-02]] | Basics I: Introduction, Installation, Cargo |                         |
+| [[*Meeting 2][09-04]] | Basics II: Common Programming Concepts      | A1 out                  |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 3][09-09]] | Data I: Stack, Heap, References             |                         |
+| [[*Meeting 4][09-11]] | Data II: Struct, Enums, Collections         | A2 out, A1 due          |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 5][09-16]] | Theory I: PL Theory Primer                  |                         |
+| [[*Meeting 6][09-18]] | Theory II: References and Boxes             | A3 out, A2 due          |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 7][09-23]] | Functions I: Generics and Traits            |                         |
+| [[*Meeting 8][09-25]] | Functions II: Closures and Iterators        | A4 out, A3 due          |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 9][09-30]] | Smart Pointers I: Boxes, Recursive Data     |                         |
+| [[*Meeting 10][10-02]] | Smart Pointers II: ~Rc<T>~ and ~RefCell<T>~ | A5 out, A4 due          |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 11][10-07]] | Theory III: Blocks and Lifetimes            |                         |
+| [[*Meeting 12][10-09]] | Theory IV: Tuples and Paths                 | A6 out, A5 due          |
+|-------+---------------------------------------------+-------------------------|
+| 10-14 | *NO CLASS*                                  | Indigenous Peoples' Day |
+| [[*Meeting 13][10-16]] | Concurrency I: Message Passing              | A6 due                  |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 14][10-21]] | Concurrency II: Asynchronous Programming    |                         |
+| [[*Meeting 15][10-23]] | *Midterm Exam*                              | A7 out                  |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 16][10-28]] | Theory V: Conditionals                      |                         |
+| [[*Meeting 17][10-30]] | Theory VI: Linear Typed Lambda Calculus     | FP outline out, A7 due  |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 18][11-04]] | Advanced I: TBD                             |                         |
+| [[*Meeting 19][11-06]] | Project Meetings                            | FP outline due          |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 20][11-11]] | Advanced II: TBD                            |                         |
+| [[*Meeting 21][11-13]] | Project Meetings                            | FP check-in 1           |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 22][11-18]] | Advanced III: TBD                           |                         |
+| [[*Meeting 23][11-20]] | Project Meetings                            | FP check-in 2           |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 24][11-25]] | Advanced IV: TBD                            |                         |
+| 11-27 | *NO CLASS*                                  | Thanksgiving            |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 25][12-02]] | Advance V: TBD                              |                         |
+| [[*Meeting 26][12-04]] | Final Project Presentations                 |                         |
+|-------+---------------------------------------------+-------------------------|
+| [[*Meeting 27][12-09]] | Final Project Presentations                 | FP due                  |
+|-------+---------------------------------------------+-------------------------|
+* Week 1: Basics
+** Meeting 1
+*** Title: *Course Introduction*
+*** Reading:
++ Syllabus
++ The Rust Programming Language (RPL): [[https://doc.rust-lang.org/book/foreword.html][Forward]]
++ RPL: [[https://doc.rust-lang.org/book/ch00-00-introduction.html][Introduction]]
++ RPL 1: [[https://doc.rust-lang.org/book/ch01-00-getting-started.html][Getting Started]]
+** Meeting 2
+*** Title: *Common Programming Concepts*
+*** Reading:
++ RPL 2: [[https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html][Programming a Guessing Game]]
++ RPL 3: [[https://doc.rust-lang.org/book/ch03-00-common-programming-concepts.html][Common Programming Concepts]]
+* Week 2: Data
+** Meeting 3
+*** Title: *Stack, Heap, References*
+*** Reading:
++ RPL 4.2: [[https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html][References and Borrowing]]
++ RPL 4.1: [[https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html][What is Ownership?]]
+** Meeting 4
+*** Title: *Structures, Enumerations, Collections*
+*** Reading:
++ RPL 5: [[https://doc.rust-lang.org/book/ch05-00-structs.html][Using Structs to Structure Related Data]]
++ PRL 6: [[https://doc.rust-lang.org/book/ch06-00-enums.html][Enums and Pattern Matching]]
++ RPL 18: [[https://doc.rust-lang.org/book/ch18-00-patterns.html][Patterns and Matching]]
++ RPL 4.3: [[https://doc.rust-lang.org/book/ch04-03-slices.html][The Slice Type]]
++ RPL 8: [[https://doc.rust-lang.org/book/ch08-00-common-collections.html][Common Collections]]
+* Week 3: Theory
+** Meeting 5
+*** Title: *PL Theory Primer*
+** Meeting 6
+*** Title: *References and Boxes*
++ RPL 15.1: [[https://doc.rust-lang.org/stable/book/ch15-01-box.html][Using ~Box<T>~ to Point to Data on the Heap]]
+* Week 4: Functions
+** Meeting 7
+*** Title: *Generics and Traits*
+*** Reading:
++ RPL 10.1: [[https://doc.rust-lang.org/book/ch10-01-syntax.html][Generic Data Types]]
++ RPL 10.2: [[https://doc.rust-lang.org/book/ch10-02-traits.html][Traits: Defining Shared Behavior]]
+** Meeting 8
+*** Title: *Closures and Iterators*
+*** Reading:
++ RPL 13: [[https://doc.rust-lang.org/book/ch13-00-functional-features.html][Functional Language Features: Iterators and Closures]]
+* Week 5: Smart Pointers
+** Meeting 9
+*** Title: *Boxes and Recursive Data*
++ RPL 15.1: [[https://doc.rust-lang.org/stable/book/ch15-01-box.html][Using ~Box<T>~ to Point to Data on the Heap]]
++ RPL 15.2: [[https://doc.rust-lang.org/stable/book/ch15-02-deref.html][Treating Smart Pointers Like Regular References with ~Deref~]]
++ RPL 15.3: [[https://doc.rust-lang.org/stable/book/ch15-03-drop.html][Running Code on Cleanup with the ~Drop~ Trait]]
+** Meeting 10
+*** Title: *Reference Counting and Internal Mutability*
+*** Reading:
++ RPL 15.4: [[https://doc.rust-lang.org/stable/book/ch15-04-rc.html][~Rc<T>~, the Reference Counted Smart Pointer]]
++ RPL 15.5: [[https://doc.rust-lang.org/stable/book/ch15-05-interior-mutability.html][~RefCell<T>~ and the Interior Mutability Pattern]]
++ RPL 15.6: [[https://doc.rust-lang.org/stable/book/ch15-06-reference-cycles.html][Reference Cycles Can Leak Memory]]
+* Week 6: Theory
+** Meeting 11
+*** Title: *Blocks and Lifetimes*
+*** Reading:
++ RPL 10.3: [[https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html][Validating References with Lifetimes]]
++ Rustonomicon:
+  + 3.2: [[https://doc.rust-lang.org/nomicon/aliasing.html][Aliasing]]
+  + 3.3: [[https://doc.rust-lang.org/nomicon/lifetimes.html][Lifetimes]]
+  + 3.4: [[https://doc.rust-lang.org/nomicon/lifetime-mismatch.html][Limits of Lifetimes]]
+  + 3.5: [[https://doc.rust-lang.org/nomicon/lifetime-elision.html][Lifetime Elision]]
+** Meeting 12
+*** Title: *Tuples and Paths*
+* Week 7: Concurrency
+** Meeting 13
+*** Title: *Message Passing*
+* Week 8: Midterm
+** Meeting 14
+*** Title: *Asynchronous Programming*
+** Meeting 15
+*** Title: *Midterm Examination*
+* Week 9: Theory
+** Meeting 16
+*** Title: *Conditionals*
+** Meeting 17
+*** Title: *Linear Typed Lambda Calculus*
+* Week 10: TBD
+** Meeting 18
+*** Title: *TBD*
+** Meeting 19
+*** Title: *Project Meetings*
+* Week 11: TBD
+** Meeting 20
+*** Title: *TBD*
+** Meeting 21
+*** Title: *Project Meetings*
+* Week 12: TBD
+** Meeting 22
+*** Title: *TBD*
+** Meeting 23
+*** Title: *Project Meetings*
+* Week 13: TBD
+** Meeting 24
+*** Title: *TBD*
+* Week 14: Final Project
+** Meeting 25
+*** Title: *TBD*
+** Meeting 26
+*** Title: *Final Project Presentations*
+* Week 15: Final Project
+** Meeting 27
+*** Title: *Final Project Presentations*
