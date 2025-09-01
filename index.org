@@ -10,7 +10,7 @@ or for worse, this can mean a lot of things.  Part of what making Rust
 fascinating (and what makes this course a pain to teach) is that it has a
 lot to offer.  You might be coming to this course with an interest in
 systems programming (an unreasonbly broad term), or PL design (ditto).
-Regardless, our goal is to not just to program in Rust, but also to
+Regardless, our goal is not just to program in Rust, but also to
 understand the theoretical underpinnings of the language. So in
 reality you'll probably need to have at least a passing interest in
 both perspectives.
