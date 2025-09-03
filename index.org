@@ -18,11 +18,10 @@ both perspectives.
 We'll spend the first half of this course learning how to program in
 Rust, and the second half working on a self-defined project in Rust or
 an adjacent topics.
-
 * Links
 + [[file:Syllabus/main.pdf][Course Manual]]
-+ [[https://piazza.com/class/mex7r1jygw53ka/][Piazza]]
-+ [[https://www.gradescope.com/courses/1109910][Gradescope]]
++ [[https://piazza.com/bu/fall2025/cascs392m1][Piazza]]
++ [[https://www.gradescope.com/courses/1109910][Gradescope]] (6K4D32)
 + Reading:
   + [[https://doc.rust-lang.org/stable/book/][The Rust Programming Language]]
   + [[https://doc.rust-lang.org/stable/rust-by-example/index.html][Rust by Example]]
