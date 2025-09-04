@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-04 Thu 10:10 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Assignment 1</title>
+<meta name="author" content="Nathan" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../myStyle.css" />
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"><a href="http://nmmull.github.io/CS392-F25/index.html">↩</a></div><div id="content" class="content">
+<h1 class="title">Assignment 1</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd18de04">1. Collatz Conjecture</a></li>
+<li><a href="#orgd773bbd">2. Pólya Conjecture</a></li>
+<li><a href="#org9950e18">3. Optimizing Pólya</a></li>
+<li><a href="#orgd85e2a0">4. Optimizing Collatz</a></li>
+</ul>
+</div>
+</div>
+<p>
+In this assignment we'll be looking at two classic mathematical
+conjectures, one of which is unsolved and one of which has been
+disproved, and both of which have a history of people trying to verify
+them with computers.  The goal of this assignment is to demonstrate
+that it's quite easy to write and optimize fast math verification code
+in Rust (no more rooting around in C or C++).  Generally speaking,
+I'll try to design assignments in this way: if you just want a bit of
+practice, that's all you need to do, but if you want a challege, it'll
+be there too.
+</p>
+
+<p>
+This assignment due <b>Thursday 9/11 by 8:00 PM</b>. You'll need to submit
+a <code>.zip</code> file containing a Cargo project named <code>hw1</code> in
+Gradescope. You can get the setup with:
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">cargo new hw1
+</pre>
+</div>
+<p>
+You'll put all your solutions into the file <code>hw1/src/main.rs</code>.  Please
+make sure to run <code>cargo clean</code> before submitting, i.e., don't sumbit the <code>_build</code> directory.
+</p>
+<div id="outline-container-orgd18de04" class="outline-2">
+<h2 id="orgd18de04"><span class="section-number-2">1.</span> Collatz Conjecture</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The Collatz conjecture asks if, for any positive integer \(n\), the
+following procedure eventually halts:
+</p>
+
+<ul class="org-ul">
+<li>if \(n\) is \(1\), then <b>HALT</b>;</li>
+<li>if \(n\) is even, divide \(n\) by \(2\);</li>
+<li>if \(n\) is odd, multiple \(n\) by \(3\) and add \(1\).</li>
+</ul>
+
+<p>
+Implementing this procedure has become a kind of FizzBuzz test when
+learning a new PL.  To make it <i>just a bit</i> more interesting,
+implement the function <code>verify_collatz</code> which, given a number <code>hi</code> of
+type <code>usize</code>, verifies that the conjecture holds for every number up
+to and including <code>hi</code>.  The function should not return anything, but
+you may want to include some print statements for your own benefit.
+Note that this function may not halt if the conjecture is false!
+</p>
+
+<p>
+Determine a value of <code>hi</code> so that your implementation runs for a
+reasonable amount of time (let's say 5 minutes).  How high can your
+implementation go?
+</p>
+
+<p>
+<i>Note:</i> Make sure to run using <code>cargo run --release</code> to get full speed.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd773bbd" class="outline-2">
+<h2 id="orgd773bbd"><span class="section-number-2">2.</span> Pólya Conjecture</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The Pólya conjecture, in rough terms, asks if, for any positive
+integer \(n\) greater than \(1\), at least half of all positive integers
+at most \(n\) have an odd number of prime factors (This has surprising
+connection to the Riemann hypothesis).
+</p>
+
+<p>
+More formally, define \(\Omega : \mathbb N^+ \to \mathbb N\) so that
+\(\Omega(n)\) is the number of prime factors of \(n\) counting
+multiplicites.  For example, \(\Omega(18) = 3\) since \(18 = 2 * 3 *
+3\). Define \(\lambda : \mathbb N^+ \to \{-1, 1\}\) as
+</p>
+
+\begin{align*}
+\lambda(n) = (-1)^{\Omega(n)}
+\end{align*}
+
+<p>
+and \(L : \mathbb N^+ \to \mathbb Z\) as
+</p>
+
+\begin{align*}
+L(n) = \sum_{i = 1}^n \lambda(n)
+\end{align*}
+
+<p>
+Note that \(L(n) \leq 0\) if and only if at least half of all positive
+integers at most \(n\) have an odd number of prime factors.
+</p>
+
+<p>
+The Pólya conjecture has been disproved, and the smallest
+counterexample is just shy of a billion: \(906,150,257\).  When this
+number was found, it required some serious compute to verify.  Our
+goal is to verify it on our laptops with a couple lines of code.
+</p>
+
+<p>
+Implement the function <code>verify_polya</code> which, given a number <code>hi</code> of
+type <code>usize</code>, verifies the conjecture up to and including <code>hi</code>.  The
+function should not return anything, but should stop if it finds a
+counterexample (and print it).
+</p>
+
+<p>
+Find a value of <code>hi</code> so that your implementation runs for a reasonable
+amount of time (let's say 5 minutes).  How high can your
+implementation go?
+</p>
+
+<p>
+<i>Note:</i> Make sure to run using <code>cargo run --release</code> to get full speed.
+</p>
+</div>
+</div>
+<div id="outline-container-org9950e18" class="outline-2">
+<h2 id="org9950e18"><span class="section-number-2">3.</span> Optimizing Pólya</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>(Optional)</b> In the previous question you're not required to verify
+the minimal counterexample.  The naïve solution likely won't be able
+to do this.  <i>The challenge:</i> try to make your implementation in the
+previous problem as fast as possible.  A couple things to try:
+</p>
+
+<ul class="org-ul">
+<li>Make sure you're cutting out any unnecessary computations of
+\(\Omega\).</li>
+<li>Compute prime numbers while computing \(\Omega\) and use those for
+later computations of the values of \(\Omega\) (you may want to look
+up <code>Vec</code> if you're interested in trying this).</li>
+<li>If you just want to verify the smallest counterexample, be careful
+about your choice of number types.</li>
+<li>Use a crate like <code>slow_primes</code> to help you with prime number
+calculations.</li>
+<li>Use a crate like <code>bit_vec</code> to store \(\lambda\) in a bit vector.</li>
+</ul>
+
+<p>
+My implementation runs in about 100s on my laptop.  Once you've
+optimized, have fun with other side-quests:
+</p>
+
+<ul class="org-ul">
+<li>Dealing with integer overflow (note that integer
+overflow is <i>not</i> checked at runtime in release mode).</li>
+<li>Determine how many counter examples there are below a billion.</li>
+<li>Determine the largest value of \(L\) below a billion.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd85e2a0" class="outline-2">
+<h2 id="orgd85e2a0"><span class="section-number-2">4.</span> Optimizing Collatz</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<b>(Double Optional)</b> As in the previous problem, the naïve
+implementation of <code>verify_collatz</code> won't get you that far.  But there
+are a lot of optimizations which can be done to make the code
+faster. In fact, a paper came out <a href="https://link.springer.com/content/pdf/10.1007/s11227-025-07337-0.pdf">this year</a> which gives improved
+verification algorithms for Collatz.  <i>The challenge:</i> make your
+implementation of the first problem as fast as possible.  If you want
+a target, take a look at <a href="https://pcbarina.fit.vutbr.cz/path-records.htm">this table</a> and the definition of a <i>path
+record</i>. How high of a path record can you verify on your laptop? My
+not-terribly-optimized solution only gets me to about \(50\) in 5
+minutes.
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

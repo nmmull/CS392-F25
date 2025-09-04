@@ -38,7 +38,7 @@ an adjacent topics.
 | Date  | Topic                                       | Notes                   |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 1][09-02]] | Basics I: Introduction, Installation, Cargo |                         |
-| [[*Meeting 2][09-04]] | Basics II: Common Programming Concepts      | A1 out                  |
+| [[*Meeting 2][09-04]] | Basics II: Common Programming Concepts      | [[file:Assignments/hw1.org][A1 out]]                  |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 3][09-09]] | Data I: Stack, Heap, References             |                         |
 | [[*Meeting 4][09-11]] | Data II: Struct, Enums, Collections         | A2 out, A1 due          |
@@ -94,6 +94,8 @@ an adjacent topics.
 *** Reading:
 + RPL 2: [[https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html][Programming a Guessing Game]]
 + RPL 3: [[https://doc.rust-lang.org/book/ch03-00-common-programming-concepts.html][Common Programming Concepts]]
+*** Material:
+**** [[file:Assignments/hw1.org][Assignment 1]]
 * Week 2: Data
 ** Meeting 3
 *** Title: *Stack, Heap, References*
