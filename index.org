@@ -89,19 +89,24 @@ an adjacent topics.
 + The Rust Programming Language (RPL): [[https://doc.rust-lang.org/book/foreword.html][Forward]]
 + RPL: [[https://doc.rust-lang.org/book/ch00-00-introduction.html][Introduction]]
 + RPL 1: [[https://doc.rust-lang.org/book/ch01-00-getting-started.html][Getting Started]]
+*** Material:
+**** Slides: [[file:Slides/01-intro.pdf][01-intro.pdf]]
 ** Meeting 2
 *** Title: *Common Programming Concepts*
 *** Reading:
 + RPL 2: [[https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html][Programming a Guessing Game]]
 + RPL 3: [[https://doc.rust-lang.org/book/ch03-00-common-programming-concepts.html][Common Programming Concepts]]
 *** Material:
-**** [[file:Assignments/hw1.org][Assignment 1]]
+**** Slides: [[file:Slides/02-basics.pdf][02-basics.pdf]]
+**** Assignment: [[file:Assignments/hw1.org][hw1.html]]
 * Week 2: Data
 ** Meeting 3
 *** Title: *Stack, Heap, References*
 *** Reading:
 + RPL 4.2: [[https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html][References and Borrowing]]
 + RPL 4.1: [[https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html][What is Ownership?]]
+*** Material:
+**** Slides: [[file:Slides/03-stack-heap.pdf][03-stack-heap.pdf]]
 ** Meeting 4
 *** Title: *Structures, Enumerations, Collections*
 *** Reading:
