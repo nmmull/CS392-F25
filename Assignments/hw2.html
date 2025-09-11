@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-11 Thu 10:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Assignment 2</title>
+<meta name="author" content="Nathan" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../myStyle.css" />
+</head>
+<body>
+<div id="org-div-home-and-up"><a href="http://nmmull.github.io/CS392-F25/index.html">↩</a></div><div id="content" class="content">
+<h1 class="title">Assignment 2</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4542960">Easy Mode</a></li>
+<li><a href="#orgaadc762">Hard Mode</a></li>
+</ul>
+</div>
+</div>
+<p>
+This assignment due <b>Thursday 9/18 by 8:00 PM</b>. You'll need to submit
+a <code>.zip</code> file containing a Cargo project named <code>hw2</code> in
+Gradescope. You can get the setup with:
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">cargo new hw2
+</pre>
+</div>
+<p>
+You'll can put your solutions into the file <code>hw1/src/main.rs</code>.  Please
+make sure to run <code>cargo clean</code> before submitting, i.e., don't sumbit
+the <code>_build</code> directory.
+</p>
+
+<p>
+The specification for this assignment is very simple: <i>implement an
+<a href="https://dev.realworldocaml.org/data-serialization.html">S-expressions</a> parser.</i> This is a great way to make sure we understand
+how to work with the basic constructs of the language.
+</p>
+<div id="outline-container-org4542960" class="outline-2">
+<h2 id="org4542960">Easy Mode</h2>
+<div class="outline-text-2" id="text-org4542960">
+<p>
+You should use the following types in your program:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #483d8b;">#[derive(Debug, Clone, PartialEq)]</span>
+<span style="color: #a020f0;">enum</span> <span style="color: #228b22;">Token</span> {
+    <span style="color: #228b22;">Lparen</span>,
+    <span style="color: #228b22;">Rparen</span>,
+    <span style="color: #228b22;">Atom</span>(<span style="color: #228b22;">String</span>),
+}
+
+<span style="color: #483d8b;">#[derive(Debug, Clone, PartialEq)]</span>
+<span style="color: #a020f0;">enum</span> <span style="color: #228b22;">Sexpr</span> {
+    <span style="color: #228b22;">Atom</span>(<span style="color: #228b22;">String</span>),
+    <span style="color: #228b22;">List</span>(<span style="color: #228b22;">Vec</span>&lt;<span style="color: #228b22;">Sexpr</span>&gt;),
+}
+</pre>
+</div>
+
+<p>
+In the simplest form of this assignment, you're required to implement
+the following functions.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">lex</span>(<span style="color: #a0522d;">input</span>: <span style="color: #000000; background-color: #ffffff;">&amp;</span><span style="color: #228b22;">str</span>) -&gt; <span style="color: #228b22;">Option</span>&lt;<span style="color: #228b22;">Vec</span>&lt;<span style="color: #228b22;">Token</span>&gt;&gt; {
+    <span style="color: #483d8b;">todo!</span>()
+}
+
+<span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">parse</span>(<span style="color: #a0522d;">input</span>: <span style="color: #228b22;">Vec</span>&lt;<span style="color: #228b22;">Token</span>&gt;) -&gt; <span style="color: #228b22;">Option</span>&lt;<span style="color: #228b22;">Vec</span>&lt;<span style="color: #228b22;">Sexpr</span>&gt;&gt; {
+    <span style="color: #483d8b;">todo!</span>()
+}
+</pre>
+</div>
+
+<p>
+In the interest of simplicity (and a low memory footprint), we're not
+going to deal with useful error messages.  We'll also take the
+simplest definition of an atom at the getgo: <i>an atom is a contiguous
+sequence of non-whitespace non-parentheses unicode characters.</i>
+</p>
+
+<p>
+And that's all folks. Happy coding.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaadc762" class="outline-2">
+<h2 id="orgaadc762">Hard Mode</h2>
+<div class="outline-text-2" id="text-orgaadc762">
+<p>
+It is very easy to make this task very hard. Let's look at a couple
+options.
+</p>
+
+<ul class="org-ul">
+<li>It's not uncommon to allow comments in files containing
+S-expressions.  Take a look at the <a href="https://github.com/janestreet/sexplib"><code>sexplib</code></a> for one possible
+specifications of how comments might work.  <i>Implement all or a
+subset of these into your lexer.</i></li>
+<li>Currently we cannot include whitespace (among other things) in our
+atoms.  This is typically handled by allows string literals to be a
+part of an S-expression</li>
+<li><i>More to come.</i></li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

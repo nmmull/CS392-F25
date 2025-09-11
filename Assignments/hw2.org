@@ -1,0 +1,70 @@
+#+title: Assignment 2
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../myStyle.css" />
+#+OPTIONS: html-style:nil H:2 toc:1 num:nil
+#+HTML_LINK_HOME: http://nmmull.github.io/CS392-F25/index.html
+This assignment due *Thursday 9/18 by 8:00 PM*. You'll need to submit
+a ~.zip~ file containing a Cargo project named ~hw2~ in
+Gradescope. You can get the setup with:
+#+begin_src
+cargo new hw2
+#+end_src
+You'll can put your solutions into the file ~hw1/src/main.rs~.  Please
+make sure to run ~cargo clean~ before submitting, i.e., don't sumbit
+the ~_build~ directory.
+
+The specification for this assignment is very simple: /implement an
+[[https://dev.realworldocaml.org/data-serialization.html][S-expressions]] parser./ This is a great way to make sure we understand
+how to work with the basic constructs of the language.
+
+* Easy Mode
+
+You should use the following types in your program:
+
+#+begin_src rust
+  #[derive(Debug, Clone, PartialEq)]
+  enum Token {
+      Lparen,
+      Rparen,
+      Atom(String),
+  }
+
+  #[derive(Debug, Clone, PartialEq)]
+  enum Sexpr {
+      Atom(String),
+      List(Vec<Sexpr>),
+  }
+#+end_src
+
+In the simplest form of this assignment, you're required to implement
+the following functions.
+
+#+begin_src rust
+  fn lex(input: &str) -> Option<Vec<Token>> {
+      todo!()
+  }
+
+  fn parse(input: Vec<Token>) -> Option<Vec<Sexpr>> {
+      todo!()
+  }
+#+end_src
+
+In the interest of simplicity (and a low memory footprint), we're not
+going to deal with useful error messages.  We'll also take the
+simplest definition of an atom at the getgo: /an atom is a contiguous
+sequence of non-whitespace non-parentheses unicode characters./
+
+And that's all folks. Happy coding.
+
+* Hard Mode
+
+It is very easy to make this task very hard. Let's look at a couple
+options.
+
++ It's not uncommon to allow comments in files containing
+  S-expressions.  Take a look at the [[https://github.com/janestreet/sexplib][~sexplib~]] for one possible
+  specifications of how comments might work.  /Implement all or a
+  subset of these into your lexer./
++ Currently we cannot include whitespace (among other things) in our
+  atoms.  This is typically handled by allows string literals to be a
+  part of an S-expression
++ /More to come./

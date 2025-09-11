@@ -41,7 +41,7 @@ an adjacent topics.
 | [[*Meeting 2][09-04]] | Basics II: Common Programming Concepts      | [[file:Assignments/hw1.org][A1 out]]                  |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 3][09-09]] | Data I: Stack, Heap, References             |                         |
-| [[*Meeting 4][09-11]] | Data II: Struct, Enums, Collections         | A2 out, A1 due          |
+| [[*Meeting 4][09-11]] | Data II: Struct, Enums, Collections         | [[file:Assignments/hw2.org][A2 out]], A1 due          |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 5][09-16]] | Theory I: PL Theory Primer                  |                         |
 | [[*Meeting 6][09-18]] | Theory II: References and Boxes             | A3 out, A2 due          |
@@ -81,7 +81,7 @@ an adjacent topics.
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 27][12-09]] | Final Project Presentations                 | FP due                  |
 |-------+---------------------------------------------+-------------------------|
-* Week 1: Basics
+* Week 1: Basics ✓
 ** Meeting 1
 *** Title: *Course Introduction*
 *** Reading:
@@ -115,6 +115,9 @@ an adjacent topics.
 + RPL 18: [[https://doc.rust-lang.org/book/ch18-00-patterns.html][Patterns and Matching]]
 + RPL 4.3: [[https://doc.rust-lang.org/book/ch04-03-slices.html][The Slice Type]]
 + RPL 8: [[https://doc.rust-lang.org/book/ch08-00-common-collections.html][Common Collections]]
+*** Material:
+**** Slides: [[file:Slides/04-structs-enums.pdf][04-structs-enums.pdf]]
+**** Assignment: [[file:Assignments/hw2.org][hw2.html]]
 * Week 3: Theory
 ** Meeting 5
 *** Title: *PL Theory Primer*
