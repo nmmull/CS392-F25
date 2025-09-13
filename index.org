@@ -99,7 +99,7 @@ an adjacent topics.
 *** Material:
 **** Slides: [[file:Slides/02-basics.pdf][02-basics.pdf]]
 **** Assignment: [[file:Assignments/hw1.org][hw1.html]]
-* Week 2: Data
+* Week 2: Data ✓
 ** Meeting 3
 *** Title: *Stack, Heap, References*
 *** Reading:
