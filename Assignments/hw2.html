@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-11 Thu 10:25 -->
+<!-- 2025-09-13 Sat 11:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Assignment 2</title>
@@ -18,8 +18,8 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4542960">Easy Mode</a></li>
-<li><a href="#orgaadc762">Hard Mode</a></li>
+<li><a href="#org0526fe8">Easy Mode</a></li>
+<li><a href="#org989f387">Hard Mode</a></li>
 </ul>
 </div>
 </div>
@@ -43,9 +43,9 @@ The specification for this assignment is very simple: <i>implement an
 <a href="https://dev.realworldocaml.org/data-serialization.html">S-expressions</a> parser.</i> This is a great way to make sure we understand
 how to work with the basic constructs of the language.
 </p>
-<div id="outline-container-org4542960" class="outline-2">
-<h2 id="org4542960">Easy Mode</h2>
-<div class="outline-text-2" id="text-org4542960">
+<div id="outline-container-org0526fe8" class="outline-2">
+<h2 id="org0526fe8">Easy Mode</h2>
+<div class="outline-text-2" id="text-org0526fe8">
 <p>
 You should use the following types in your program:
 </p>
@@ -94,9 +94,9 @@ And that's all folks. Happy coding.
 </p>
 </div>
 </div>
-<div id="outline-container-orgaadc762" class="outline-2">
-<h2 id="orgaadc762">Hard Mode</h2>
-<div class="outline-text-2" id="text-orgaadc762">
+<div id="outline-container-org989f387" class="outline-2">
+<h2 id="org989f387">Hard Mode</h2>
+<div class="outline-text-2" id="text-org989f387">
 <p>
 It is very easy to make this task very hard. Let's look at a couple
 options.
@@ -110,7 +110,13 @@ subset of these into your lexer.</i></li>
 <li>Currently we cannot include whitespace (among other things) in our
 atoms.  This is typically handled by allows string literals to be a
 part of an S-expression</li>
-<li><i>More to come.</i></li>
+<li>I think one of the more interesting challenges in write a good
+S-expression parser is to do so with a low memory footprint.  Look
+into <a href="https://doc.rust-lang.org/std/io/struct.BufReader.html"><code>BufReader</code></a> in <code>std</code> and use this parse an S-expression from a
+file without storing the entire contents of the file in memory. In
+particular, see if you can handle the case in which the file
+contains a very large S-expression without any newlines.  For this,
+you may assume that the file only contains ASCII characters.</li>
 </ul>
 </div>
 </div>

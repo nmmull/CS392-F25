@@ -67,4 +67,8 @@ options.
 + Currently we cannot include whitespace (among other things) in our
   atoms.  This is typically handled by allows string literals to be a
   part of an S-expression
-+ /More to come./
++ Look into [[https://doc.rust-lang.org/std/io/struct.BufReader.html][~BufReader~]] in ~std~ and use this parse an S-expression
+  from a file without storing the entire contents of the file in
+  memory. In particular, see if you can handle the case in which the
+  file contains a very large S-expression without any newlines.  For
+  this, you may assume that the file only contains ASCII characters.
