@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-21 Sun 18:47 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Assignment 3</title>
+<meta name="author" content="Nathan" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../myStyle.css" />
+</head>
+<body>
+<div id="org-div-home-and-up"><a href="http://nmmull.github.io/CS392-F25/index.html">↩</a></div><div id="content" class="content">
+<h1 class="title">Assignment 3</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3db7dd8">Parser</a></li>
+<li><a href="#orgfc7a790">Type Checker</a></li>
+<li><a href="#orgdad7d02">Evaluator</a></li>
+<li><a href="#org06da045">Closing Remarks</a></li>
+</ul>
+</div>
+</div>
+<p>
+This assignment due (roughly) <b>Thursday 9/25 by 8:00 PM</b>. You'll need to submit
+a <code>.zip</code> file containing a dune project named <code>salt1</code> on Gradescope.
+You can find the starter code at the newly minted <a href="https://github.com/nmmull/salt392">salt392</a>
+repository. Please make sure to run <code>dune clean</code> before you submit,
+i.e., don't submit the <code>_build</code> directory.
+</p>
+
+<p>
+In this assignment you'll be implementing the subset of Rust that we
+discussed in lecture. It would be a bit too much at the moment to
+implement this in Rust, so we're going to use OCaml.
+</p>
+
+<p>
+As we discuss endlessly in <code>CS320</code>, there three things we need to
+implement for an interpreter: a <b>parser</b>, a <b>type checker</b> and an
+<b>evaluator</b>.
+</p>
+<div id="outline-container-org3db7dd8" class="outline-2">
+<h2 id="org3db7dd8">Parser</h2>
+<div class="outline-text-2" id="text-org3db7dd8">
+<p>
+For this course, we're not going to worry about parsers, the
+interpreter comes with a parser.  But this has a couple caveats:
+</p>
+<ul class="org-ul">
+<li>it's more convenient to build a <i>single</i> parser and use it for every
+interpreter we'll use.  This means our parser──and in particular our
+AST──has a lot of stuff we won't be working with initially.</li>
+<li><p>
+Since we're using a single parser, we might as well trick it out
+with nice error messages.  To do this, our AST carries metadata
+about the location of subexpressions in the source program (this is
+how we know <i>where</i> the error is when we display the message). This
+isn't terribly complex, but it does affect the way we work with ASTs
+slightly: we cannot pattern match on an AST directly, we have to
+pattern match on its associated data, which we get by record access
+(ASTs are represented as records).  This is why──in <code>saltO</code>, for
+example──you'll see things like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ocaml"><span style="color: #a020f0;">match</span> expr.expr <span style="color: #a020f0;">with</span>
+| ...
+| _ -&gt; <span style="color: #000000; background-color: #ffffff;">Error</span> (not_implemented expr.meta)
+</pre>
+</div>
+
+<p>
+<code>expr.expr</code> is the "actual" AST whereas <code>expr.meta</code> is the location
+information for <code>expr</code>.
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfc7a790" class="outline-2">
+<h2 id="orgfc7a790">Type Checker</h2>
+<div class="outline-text-2" id="text-orgfc7a790">
+<p>
+We know what to do here.  I've given you some typing rules, you need
+to implement them.
+</p>
+
+<p>
+Just <i>one</i> thing: in order to simplify things, we'll always work
+within <code>('a, Error_msg.t) result</code> to deal with type errors.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>  The module <code>Error_msg</code> deals with error messages.
+For the most part, you don't need to know what's going on here (though
+I recommend looking if you're interested).  The only important
+function is <code>Error_msg.mk</code>, which takes the location metadata of an
+AST and a string for the message itself.  To make things
+easy on you, I'll always include a collection of smart constructors
+in a module called <code>Errors</code> for the kinds of errors you will encounter
+in writing the type checker.  When you're writing an error branch in
+the type checker, you should use <code>Error e</code>, where <code>e</code> uses a smart
+constructor.  For example, from <code>salt0</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ocaml"><span style="color: #a020f0;">match</span> e.expr <span style="color: #a020f0;">with</span>
+| <span style="color: #000000; background-color: #ffffff;">PlaceExpr</span> (<span style="color: #000000; background-color: #ffffff;">Var</span> x) -&gt; (
+    <span style="color: #a020f0;">match</span> <span style="color: #228b22;">Map.</span>find_opt x ctxt <span style="color: #a020f0;">with</span>
+    | <span style="color: #000000; background-color: #ffffff;">None</span> -&gt; <span style="color: #000000; background-color: #ffffff;">Error</span> (unknown_var e.meta x)
+    | <span style="color: #000000; background-color: #ffffff;">Some</span> ty -&gt; <span style="color: #000000; background-color: #ffffff;">Ok</span> ty
+  )
+| ...
+</pre>
+</div>
+
+<p>
+<code>unknown_var</code> is a smart constructor which takes a variable name and
+the location information for that variable.  For example, running the
+interpreter on the program:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">main</span>() {
+    <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">x</span> = 2;
+    <span style="color: #a020f0;">let</span> <span style="color: #a0522d;">z</span> = x + y;
+}
+</pre>
+</div>
+<p>
+will display the error message:
+</p>
+<div class="org-src-container">
+<pre class="src src-text">error: unknown variable `y`
+ --&gt; lib/example.rs:3:17
+  |
+3 |     let z = x + y;
+  |                 ^ unknown variable `y`
+</pre>
+</div>
+
+<p>
+Again, there are quite a few parts of the AST that we're not
+using. You should use the <code>not_implemented</code> smart constructor when you
+come across something we haven't talked about.
+</p>
+
+<p>
+There is one notable tricky case for types: <code>BorrowTy</code>.
+</p>
+
+<ul class="org-ul">
+<li>For now, always assume that a reference is <code>Immutable</code>.</li>
+<li>Eventually, we will need references to keep track of multiple place
+expressions, so the constructor <code>BorrowTy</code> keeps track of a <i>list</i>
+of place expressions. For now, always assume that the list is a
+singleton.</li>
+<li><code>BorrowTy</code> also keeps track of the underlying type associated the
+reference.  This is does so that it's possible to pretty-print the
+borrow type as it would be printed by Rust (e.g., <code>&amp;i32</code> and not
+<code>&amp;x</code>).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdad7d02" class="outline-2">
+<h2 id="orgdad7d02">Evaluator</h2>
+<div class="outline-text-2" id="text-orgdad7d02">
+<p>
+You know the evaluation rules, you need to build the evaluator.  And
+there's no need to deal with errors; because of type soundness, if your
+program type checks, evaluation is guaranteed to succeed (which
+means <code>assert false</code> will be used quite a bit).
+</p>
+</div>
+</div>
+<div id="outline-container-org06da045" class="outline-2">
+<h2 id="org06da045">Closing Remarks</h2>
+<div class="outline-text-2" id="text-org06da045">
+<p>
+There's a lot I'm probably forgetting to mention here. This is very
+much an experiment, y'all are helping me stress test these
+assignments.  Please ask lots of questions, and let me know if you
+have any thoughts about improvements.  Also, if you want a <b>hard mode</b>
+for this assignment, I'll just say that there's a couple parts of the
+language that are "fair game" in the sense that they don't require new
+concepts, but are not implemented in the base <code>salt1</code>. These include:
+</p>
+<ul class="org-ul">
+<li>Booleans</li>
+<li>Assert statements</li>
+<li>Arithmetic/Boolean operators</li>
+</ul>
+<p>
+Generally speaking, explore the AST, see if there's anything you want
+to add. If you're really feeling up to it, extend the parser(!)
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">This
+allows us to have a uniform error-handling approach for the parser and
+the type checker.</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>

@@ -29,8 +29,10 @@ an adjacent topics.
   + [[https://rust-unofficial.github.io/too-many-lists/index.html][Learning Rust With Entirely Too Many Linked Lists]]
   + [[https://doc.rust-lang.org/reference/][The Rust Reference]]
   + [[https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf][A taste of linear logic]]
+  + [[https://www.sciencedirect.com/science/article/pii/S0304397599000547][Operational interpretations of linear logic]]
   + [[https://dl.acm.org/doi/10.1145/3443420][A Lightweight Formalism for Reference Lifetimes and Borrowing in Rust]]
 + Other Resources:
+  + [[https://github.com/nmmull/salt392/tree/main][salt392]]
   + [[https://doc.rust-lang.org/std/index.html][Rust Standard Library]]
   + [[https://github.com/rustviz/rustviz][RustViz]]
 * Calendar
@@ -43,8 +45,8 @@ an adjacent topics.
 | [[*Meeting 3][09-09]] | Data I: Stack, Heap, References             |                         |
 | [[*Meeting 4][09-11]] | Data II: Struct, Enums, Collections         | [[file:Assignments/hw2.org][A2 out]], A1 due          |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 5][09-16]] | Theory I: PL Theory Primer                  |                         |
-| [[*Meeting 6][09-18]] | Theory II: References and Boxes             | A3 out, A2 due          |
+| [[*Meeting 5][09-16]] | Theory I: Straight Line Programs (salt0)    |                         |
+| [[*Meeting 6][09-18]] | Theory II: Variables and References (salt1) | [[file:Assignments/hw3.org][A3 out]], A2 due          |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 7][09-23]] | Functions I: Generics and Traits            |                         |
 | [[*Meeting 8][09-25]] | Functions II: Closures and Iterators        | A4 out, A3 due          |
@@ -118,12 +120,19 @@ an adjacent topics.
 *** Material:
 **** Slides: [[file:Slides/04-structs-enums.pdf][04-structs-enums.pdf]]
 **** Assignment: [[file:Assignments/hw2.org][hw2.html]]
-* Week 3: Theory
+* Week 3: Theory ✓
 ** Meeting 5
-*** Title: *PL Theory Primer*
+*** Title: *salt0: Straight Line Programs*
+*** Material:
+**** Specification: [[file:notes/salt0/salt0.pdf][salt0.pdf]]
+**** Reference implementation: [[https://github.com/nmmull/salt392/tree/main/salt0][salt0]]
 ** Meeting 6
-*** Title: *References and Boxes*
-+ RPL 15.1: [[https://doc.rust-lang.org/stable/book/ch15-01-box.html][Using ~Box<T>~ to Point to Data on the Heap]]
+*** Title: *salt1: Mutable Variables, Immutable References*
+*** Material:
+**** Specification: [[file:notes/salt1/salt1.pdf][salt1.pdf]]
+*** Assignment:
+**** Landing page: [[file:Assignments/hw3.org][hw3.html]]
+**** Starter code: [[https://github.com/nmmull/salt392/tree/main/salt1][salt1]]
 * Week 4: Functions
 ** Meeting 7
 *** Title: *Generics and Traits*

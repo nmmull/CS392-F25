@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-13 Sat 13:12 -->
+<!-- 2025-09-21 Sun 18:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CAS CS 392</title>
@@ -18,23 +18,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org04ee608">Links</a></li>
-<li><a href="#orga95edb3">Calendar</a></li>
-<li><a href="#orgb040bee">Week 1: Basics ✓</a></li>
-<li><a href="#orgb95f24e">Week 2: Data ✓</a></li>
-<li><a href="#orgaa436e9">Week 3: Theory</a></li>
-<li><a href="#orgf5f94f8">Week 4: Functions</a></li>
-<li><a href="#org8186523">Week 5: Smart Pointers</a></li>
-<li><a href="#org5315773">Week 6: Theory</a></li>
-<li><a href="#orgc81c4f2">Week 7: Concurrency</a></li>
-<li><a href="#org3a1c86a">Week 8: Midterm</a></li>
-<li><a href="#org9e41a6d">Week 9: Theory</a></li>
-<li><a href="#orgaca274c">Week 10: TBD</a></li>
-<li><a href="#orgf0a6d55">Week 11: TBD</a></li>
-<li><a href="#org976727b">Week 12: TBD</a></li>
-<li><a href="#orgbdd566c">Week 13: TBD</a></li>
-<li><a href="#orgfbe0d03">Week 14: Final Project</a></li>
-<li><a href="#org4f0c4b6">Week 15: Final Project</a></li>
+<li><a href="#org8c7102d">Links</a></li>
+<li><a href="#org792e6ca">Calendar</a></li>
+<li><a href="#org2bded4f">Week 1: Basics ✓</a></li>
+<li><a href="#org35fd657">Week 2: Data ✓</a></li>
+<li><a href="#orgd098686">Week 3: Theory ✓</a></li>
+<li><a href="#org1811b7e">Week 4: Functions</a></li>
+<li><a href="#org5dfd1dd">Week 5: Smart Pointers</a></li>
+<li><a href="#org45ed32a">Week 6: Theory</a></li>
+<li><a href="#org0598f94">Week 7: Concurrency</a></li>
+<li><a href="#org1b6d7c3">Week 8: Midterm</a></li>
+<li><a href="#org5dcb874">Week 9: Theory</a></li>
+<li><a href="#orgb69b756">Week 10: TBD</a></li>
+<li><a href="#org3ed3ee0">Week 11: TBD</a></li>
+<li><a href="#org7a858ee">Week 12: TBD</a></li>
+<li><a href="#orgb95ec0b">Week 13: TBD</a></li>
+<li><a href="#org83d1df8">Week 14: Final Project</a></li>
+<li><a href="#org9416131">Week 15: Final Project</a></li>
 </ul>
 </div>
 </div>
@@ -75,9 +75,9 @@ We'll spend the first half of this course learning how to program in
 Rust, and the second half working on a self-defined project in Rust or
 an adjacent topics.
 </p>
-<div id="outline-container-org04ee608" class="outline-2">
-<h2 id="org04ee608">Links</h2>
-<div class="outline-text-2" id="text-org04ee608">
+<div id="outline-container-org8c7102d" class="outline-2">
+<h2 id="org8c7102d">Links</h2>
+<div class="outline-text-2" id="text-org8c7102d">
 <ul class="org-ul">
 <li><a href="Syllabus/main.pdf">Course Manual</a></li>
 <li><a href="https://piazza.com/bu/fall2025/cascs392m1">Piazza</a></li>
@@ -90,19 +90,21 @@ an adjacent topics.
 <li><a href="https://rust-unofficial.github.io/too-many-lists/index.html">Learning Rust With Entirely Too Many Linked Lists</a></li>
 <li><a href="https://doc.rust-lang.org/reference/">The Rust Reference</a></li>
 <li><a href="https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf">A taste of linear logic</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0304397599000547">Operational interpretations of linear logic</a></li>
 <li><a href="https://dl.acm.org/doi/10.1145/3443420">A Lightweight Formalism for Reference Lifetimes and Borrowing in Rust</a></li>
 </ul></li>
 <li>Other Resources:
 <ul class="org-ul">
+<li><a href="https://github.com/nmmull/salt392/tree/main">salt392</a></li>
 <li><a href="https://doc.rust-lang.org/std/index.html">Rust Standard Library</a></li>
 <li><a href="https://github.com/rustviz/rustviz">RustViz</a></li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga95edb3" class="outline-2">
-<h2 id="orga95edb3">Calendar</h2>
-<div class="outline-text-2" id="text-orga95edb3">
+<div id="outline-container-org792e6ca" class="outline-2">
+<h2 id="org792e6ca">Calendar</h2>
+<div class="outline-text-2" id="text-org792e6ca">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -122,78 +124,78 @@ an adjacent topics.
 </thead>
 <tbody>
 <tr>
-<td class="org-left"><a href="#org2b559a8">09-02</a></td>
+<td class="org-left"><a href="#org0b9547e">09-02</a></td>
 <td class="org-left">Basics I: Introduction, Installation, Cargo</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#orge72eb60">09-04</a></td>
+<td class="org-left"><a href="#org988843a">09-04</a></td>
 <td class="org-left">Basics II: Common Programming Concepts</td>
 <td class="org-left"><a href="Assignments/hw1.html">A1 out</a></td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#orgf3d4ed5">09-09</a></td>
+<td class="org-left"><a href="#orgf99c24e">09-09</a></td>
 <td class="org-left">Data I: Stack, Heap, References</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org012baf6">09-11</a></td>
+<td class="org-left"><a href="#orgbecdae3">09-11</a></td>
 <td class="org-left">Data II: Struct, Enums, Collections</td>
 <td class="org-left"><a href="Assignments/hw2.html">A2 out</a>, A1 due</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#orge8169f4">09-16</a></td>
-<td class="org-left">Theory I: PL Theory Primer</td>
+<td class="org-left"><a href="#org561dfc0">09-16</a></td>
+<td class="org-left">Theory I: Straight Line Programs (salt0)</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org9586405">09-18</a></td>
-<td class="org-left">Theory II: References and Boxes</td>
-<td class="org-left">A3 out, A2 due</td>
+<td class="org-left"><a href="#org412c8f3">09-18</a></td>
+<td class="org-left">Theory II: Variables and References (salt1)</td>
+<td class="org-left"><a href="Assignments/hw3.html">A3 out</a>, A2 due</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#org00bc716">09-23</a></td>
+<td class="org-left"><a href="#org2530ae3">09-23</a></td>
 <td class="org-left">Functions I: Generics and Traits</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org5d5a70b">09-25</a></td>
+<td class="org-left"><a href="#org65896a2">09-25</a></td>
 <td class="org-left">Functions II: Closures and Iterators</td>
 <td class="org-left">A4 out, A3 due</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#org846827f">09-30</a></td>
+<td class="org-left"><a href="#org4d32055">09-30</a></td>
 <td class="org-left">Smart Pointers I: Boxes, Recursive Data</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org84319cc">10-02</a></td>
+<td class="org-left"><a href="#org18a591a">10-02</a></td>
 <td class="org-left">Smart Pointers II: <code>Rc&lt;T&gt;</code> and <code>RefCell&lt;T&gt;</code></td>
 <td class="org-left">A5 out, A4 due</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#orgf37df94">10-07</a></td>
+<td class="org-left"><a href="#org7dfa887">10-07</a></td>
 <td class="org-left">Theory III: Blocks and Lifetimes</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org3fd9dfd">10-09</a></td>
+<td class="org-left"><a href="#org9352537">10-09</a></td>
 <td class="org-left">Theory IV: Tuples and Paths</td>
 <td class="org-left">A6 out, A5 due</td>
 </tr>
@@ -206,79 +208,79 @@ an adjacent topics.
 </tr>
 
 <tr>
-<td class="org-left"><a href="#orgfd3d243">10-16</a></td>
+<td class="org-left"><a href="#orgb169bfe">10-16</a></td>
 <td class="org-left">Concurrency I: Message Passing</td>
 <td class="org-left">A6 due</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#org45e3fac">10-21</a></td>
+<td class="org-left"><a href="#orgd0a1d02">10-21</a></td>
 <td class="org-left">Concurrency II: Asynchronous Programming</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org6c0ea9b">10-23</a></td>
+<td class="org-left"><a href="#org67e9744">10-23</a></td>
 <td class="org-left"><b>Midterm Exam</b></td>
 <td class="org-left">A7 out</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#org9a78379">10-28</a></td>
+<td class="org-left"><a href="#orgfa4f9f1">10-28</a></td>
 <td class="org-left">Theory V: Conditionals</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org926fece">10-30</a></td>
+<td class="org-left"><a href="#org7d93055">10-30</a></td>
 <td class="org-left">Theory VI: Linear Typed Lambda Calculus</td>
 <td class="org-left">FP outline out, A7 due</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#org12fd30a">11-04</a></td>
+<td class="org-left"><a href="#org1ff28c8">11-04</a></td>
 <td class="org-left">Advanced I: TBD</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org0a3cc44">11-06</a></td>
+<td class="org-left"><a href="#org7c4543d">11-06</a></td>
 <td class="org-left">Project Meetings</td>
 <td class="org-left">FP outline due</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#org4e6b1f0">11-11</a></td>
+<td class="org-left"><a href="#orgb3f38da">11-11</a></td>
 <td class="org-left">Advanced II: TBD</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org5d0db40">11-13</a></td>
+<td class="org-left"><a href="#orgd0d5d77">11-13</a></td>
 <td class="org-left">Project Meetings</td>
 <td class="org-left">FP check-in 1</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#orge2837d5">11-18</a></td>
+<td class="org-left"><a href="#org94d6873">11-18</a></td>
 <td class="org-left">Advanced III: TBD</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#orgf20e0c8">11-20</a></td>
+<td class="org-left"><a href="#org7919e0e">11-20</a></td>
 <td class="org-left">Project Meetings</td>
 <td class="org-left">FP check-in 2</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#org83c36e4">11-25</a></td>
+<td class="org-left"><a href="#org5e1119c">11-25</a></td>
 <td class="org-left">Advanced IV: TBD</td>
 <td class="org-left">&#xa0;</td>
 </tr>
@@ -291,20 +293,20 @@ an adjacent topics.
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#orgb29ae1e">12-02</a></td>
+<td class="org-left"><a href="#org7ec086a">12-02</a></td>
 <td class="org-left">Advance V: TBD</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><a href="#org57d8194">12-04</a></td>
+<td class="org-left"><a href="#org3369a4a">12-04</a></td>
 <td class="org-left">Final Project Presentations</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-left"><a href="#orgae36626">12-09</a></td>
+<td class="org-left"><a href="#org5ce592c">12-09</a></td>
 <td class="org-left">Final Project Presentations</td>
 <td class="org-left">FP due</td>
 </tr>
@@ -312,18 +314,18 @@ an adjacent topics.
 </table>
 </div>
 </div>
-<div id="outline-container-orgb040bee" class="outline-2">
-<h2 id="orgb040bee">Week 1: Basics ✓</h2>
-<div class="outline-text-2" id="text-orgb040bee">
+<div id="outline-container-org2bded4f" class="outline-2">
+<h2 id="org2bded4f">Week 1: Basics ✓</h2>
+<div class="outline-text-2" id="text-org2bded4f">
 </div>
-<div id="outline-container-org2b559a8" class="outline-3">
-<h3 id="org2b559a8">Meeting 1</h3>
-<div class="outline-text-3" id="text-org2b559a8">
+<div id="outline-container-org0b9547e" class="outline-3">
+<h3 id="org0b9547e">Meeting 1</h3>
+<div class="outline-text-3" id="text-org0b9547e">
 </div>
 <ul class="org-ul">
-<li><a id="orgabd4a0a"></a>Title: <b>Course Introduction</b><br /></li>
-<li><a id="orged0e9ad"></a>Reading:<br />
-<div class="outline-text-4" id="text-orged0e9ad">
+<li><a id="org99c26fe"></a>Title: <b>Course Introduction</b><br /></li>
+<li><a id="org132c915"></a>Reading:<br />
+<div class="outline-text-4" id="text-org132c915">
 <ul class="org-ul">
 <li>Syllabus</li>
 <li>The Rust Programming Language (RPL): <a href="https://doc.rust-lang.org/book/foreword.html">Forward</a></li>
@@ -332,69 +334,69 @@ an adjacent topics.
 </ul>
 </div>
 </li>
-<li><a id="org5887dd3"></a>Material:<br />
+<li><a id="org3d25908"></a>Material:<br />
 <ul class="org-ul">
-<li><a id="org26a4195"></a>Slides: <a href="Slides/01-intro.pdf">01-intro.pdf</a><br /></li>
+<li><a id="orgccf3d61"></a>Slides: <a href="Slides/01-intro.pdf">01-intro.pdf</a><br /></li>
 </ul>
 </li>
 </ul>
 </div>
-<div id="outline-container-orge72eb60" class="outline-3">
-<h3 id="orge72eb60">Meeting 2</h3>
-<div class="outline-text-3" id="text-orge72eb60">
+<div id="outline-container-org988843a" class="outline-3">
+<h3 id="org988843a">Meeting 2</h3>
+<div class="outline-text-3" id="text-org988843a">
 </div>
 <ul class="org-ul">
-<li><a id="orgdc47235"></a>Title: <b>Common Programming Concepts</b><br /></li>
-<li><a id="org0bafb92"></a>Reading:<br />
-<div class="outline-text-4" id="text-org0bafb92">
+<li><a id="org073942c"></a>Title: <b>Common Programming Concepts</b><br /></li>
+<li><a id="orge4b6f5f"></a>Reading:<br />
+<div class="outline-text-4" id="text-orge4b6f5f">
 <ul class="org-ul">
 <li>RPL 2: <a href="https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html">Programming a Guessing Game</a></li>
 <li>RPL 3: <a href="https://doc.rust-lang.org/book/ch03-00-common-programming-concepts.html">Common Programming Concepts</a></li>
 </ul>
 </div>
 </li>
-<li><a id="org01326fc"></a>Material:<br />
+<li><a id="org087c2ad"></a>Material:<br />
 <ul class="org-ul">
-<li><a id="org6b4e450"></a>Slides: <a href="Slides/02-basics.pdf">02-basics.pdf</a><br /></li>
-<li><a id="org18de72e"></a>Assignment: <a href="Assignments/hw1.html">hw1.html</a><br /></li>
+<li><a id="orgbcd2c4b"></a>Slides: <a href="Slides/02-basics.pdf">02-basics.pdf</a><br /></li>
+<li><a id="org98660a1"></a>Assignment: <a href="Assignments/hw1.html">hw1.html</a><br /></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb95f24e" class="outline-2">
-<h2 id="orgb95f24e">Week 2: Data ✓</h2>
-<div class="outline-text-2" id="text-orgb95f24e">
+<div id="outline-container-org35fd657" class="outline-2">
+<h2 id="org35fd657">Week 2: Data ✓</h2>
+<div class="outline-text-2" id="text-org35fd657">
 </div>
-<div id="outline-container-orgf3d4ed5" class="outline-3">
-<h3 id="orgf3d4ed5">Meeting 3</h3>
-<div class="outline-text-3" id="text-orgf3d4ed5">
+<div id="outline-container-orgf99c24e" class="outline-3">
+<h3 id="orgf99c24e">Meeting 3</h3>
+<div class="outline-text-3" id="text-orgf99c24e">
 </div>
 <ul class="org-ul">
-<li><a id="org962afb0"></a>Title: <b>Stack, Heap, References</b><br /></li>
-<li><a id="org29fe010"></a>Reading:<br />
-<div class="outline-text-4" id="text-org29fe010">
+<li><a id="orgff89d28"></a>Title: <b>Stack, Heap, References</b><br /></li>
+<li><a id="org61cde23"></a>Reading:<br />
+<div class="outline-text-4" id="text-org61cde23">
 <ul class="org-ul">
 <li>RPL 4.2: <a href="https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html">References and Borrowing</a></li>
 <li>RPL 4.1: <a href="https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html">What is Ownership?</a></li>
 </ul>
 </div>
 </li>
-<li><a id="orga7e13a0"></a>Material:<br />
+<li><a id="org82f5e2a"></a>Material:<br />
 <ul class="org-ul">
-<li><a id="org533dc28"></a>Slides: <a href="Slides/03-stack-heap.pdf">03-stack-heap.pdf</a><br /></li>
+<li><a id="orgcb561a2"></a>Slides: <a href="Slides/03-stack-heap.pdf">03-stack-heap.pdf</a><br /></li>
 </ul>
 </li>
 </ul>
 </div>
-<div id="outline-container-org012baf6" class="outline-3">
-<h3 id="org012baf6">Meeting 4</h3>
-<div class="outline-text-3" id="text-org012baf6">
+<div id="outline-container-orgbecdae3" class="outline-3">
+<h3 id="orgbecdae3">Meeting 4</h3>
+<div class="outline-text-3" id="text-orgbecdae3">
 </div>
 <ul class="org-ul">
-<li><a id="orgb9a14bc"></a>Title: <b>Structures, Enumerations, Collections</b><br /></li>
-<li><a id="org3a6fe26"></a>Reading:<br />
-<div class="outline-text-4" id="text-org3a6fe26">
+<li><a id="org35c1180"></a>Title: <b>Structures, Enumerations, Collections</b><br /></li>
+<li><a id="org95348aa"></a>Reading:<br />
+<div class="outline-text-4" id="text-org95348aa">
 <ul class="org-ul">
 <li>RPL 5: <a href="https://doc.rust-lang.org/book/ch05-00-structs.html">Using Structs to Structure Related Data</a></li>
 <li>PRL 6: <a href="https://doc.rust-lang.org/book/ch06-00-enums.html">Enums and Pattern Matching</a></li>
@@ -404,54 +406,65 @@ an adjacent topics.
 </ul>
 </div>
 </li>
-<li><a id="orgba20192"></a>Material:<br />
+<li><a id="org2559225"></a>Material:<br />
 <ul class="org-ul">
-<li><a id="org9ae27ab"></a>Slides: <a href="Slides/04-structs-enums.pdf">04-structs-enums.pdf</a><br /></li>
-<li><a id="orgfb46a21"></a>Assignment: <a href="Assignments/hw2.html">hw2.html</a><br /></li>
+<li><a id="org01f08b8"></a>Slides: <a href="Slides/04-structs-enums.pdf">04-structs-enums.pdf</a><br /></li>
+<li><a id="org6a2ab11"></a>Assignment: <a href="Assignments/hw2.html">hw2.html</a><br /></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaa436e9" class="outline-2">
-<h2 id="orgaa436e9">Week 3: Theory</h2>
-<div class="outline-text-2" id="text-orgaa436e9">
+<div id="outline-container-orgd098686" class="outline-2">
+<h2 id="orgd098686">Week 3: Theory ✓</h2>
+<div class="outline-text-2" id="text-orgd098686">
 </div>
-<div id="outline-container-orge8169f4" class="outline-3">
-<h3 id="orge8169f4">Meeting 5</h3>
-<div class="outline-text-3" id="text-orge8169f4">
+<div id="outline-container-org561dfc0" class="outline-3">
+<h3 id="org561dfc0">Meeting 5</h3>
+<div class="outline-text-3" id="text-org561dfc0">
 </div>
 <ul class="org-ul">
-<li><a id="org1abb288"></a>Title: <b>PL Theory Primer</b><br /></li>
+<li><a id="org6d96bf9"></a>Title: <b>salt0: Straight Line Programs</b><br /></li>
+<li><a id="orgeca3510"></a>Material:<br />
+<ul class="org-ul">
+<li><a id="orgcfae391"></a>Specification: <a href="notes/salt0/salt0.pdf">salt0.pdf</a><br /></li>
+<li><a id="orgb77f973"></a>Reference implementation: <a href="https://github.com/nmmull/salt392/tree/main/salt0">salt0</a><br /></li>
+</ul>
+</li>
 </ul>
 </div>
-<div id="outline-container-org9586405" class="outline-3">
-<h3 id="org9586405">Meeting 6</h3>
-<div class="outline-text-3" id="text-org9586405">
+<div id="outline-container-org412c8f3" class="outline-3">
+<h3 id="org412c8f3">Meeting 6</h3>
+<div class="outline-text-3" id="text-org412c8f3">
 </div>
 <ul class="org-ul">
-<li><a id="orgb9e68f0"></a>Title: <b>References and Boxes</b><br />
-<div class="outline-text-4" id="text-orgb9e68f0">
+<li><a id="org87e4aa5"></a>Title: <b>salt1: Mutable Variables, Immutable References</b><br /></li>
+<li><a id="orge027e0d"></a>Material:<br />
 <ul class="org-ul">
-<li>RPL 15.1: <a href="https://doc.rust-lang.org/stable/book/ch15-01-box.html">Using <code>Box&lt;T&gt;</code> to Point to Data on the Heap</a></li>
+<li><a id="orgaa0e2f6"></a>Specification: <a href="notes/salt1/salt1.pdf">salt1.pdf</a><br /></li>
 </ul>
-</div>
+</li>
+<li><a id="org7abdc19"></a>Assignment:<br />
+<ul class="org-ul">
+<li><a id="orga7d7c14"></a>Landing page: <a href="Assignments/hw3.html">hw3.html</a><br /></li>
+<li><a id="org8d2604b"></a>Starter code: <a href="https://github.com/nmmull/salt392/tree/main/salt1">salt1</a><br /></li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf5f94f8" class="outline-2">
-<h2 id="orgf5f94f8">Week 4: Functions</h2>
-<div class="outline-text-2" id="text-orgf5f94f8">
+<div id="outline-container-org1811b7e" class="outline-2">
+<h2 id="org1811b7e">Week 4: Functions</h2>
+<div class="outline-text-2" id="text-org1811b7e">
 </div>
-<div id="outline-container-org00bc716" class="outline-3">
-<h3 id="org00bc716">Meeting 7</h3>
-<div class="outline-text-3" id="text-org00bc716">
+<div id="outline-container-org2530ae3" class="outline-3">
+<h3 id="org2530ae3">Meeting 7</h3>
+<div class="outline-text-3" id="text-org2530ae3">
 </div>
 <ul class="org-ul">
-<li><a id="org592013b"></a>Title: <b>Generics and Traits</b><br /></li>
-<li><a id="orgc8f3839"></a>Reading:<br />
-<div class="outline-text-4" id="text-orgc8f3839">
+<li><a id="orgdfa2da3"></a>Title: <b>Generics and Traits</b><br /></li>
+<li><a id="org435feb8"></a>Reading:<br />
+<div class="outline-text-4" id="text-org435feb8">
 <ul class="org-ul">
 <li>RPL 10.1: <a href="https://doc.rust-lang.org/book/ch10-01-syntax.html">Generic Data Types</a></li>
 <li>RPL 10.2: <a href="https://doc.rust-lang.org/book/ch10-02-traits.html">Traits: Defining Shared Behavior</a></li>
@@ -460,14 +473,14 @@ an adjacent topics.
 </li>
 </ul>
 </div>
-<div id="outline-container-org5d5a70b" class="outline-3">
-<h3 id="org5d5a70b">Meeting 8</h3>
-<div class="outline-text-3" id="text-org5d5a70b">
+<div id="outline-container-org65896a2" class="outline-3">
+<h3 id="org65896a2">Meeting 8</h3>
+<div class="outline-text-3" id="text-org65896a2">
 </div>
 <ul class="org-ul">
-<li><a id="orgaa3cfd9"></a>Title: <b>Closures and Iterators</b><br /></li>
-<li><a id="orgbc65717"></a>Reading:<br />
-<div class="outline-text-4" id="text-orgbc65717">
+<li><a id="org2c3f854"></a>Title: <b>Closures and Iterators</b><br /></li>
+<li><a id="org619965c"></a>Reading:<br />
+<div class="outline-text-4" id="text-org619965c">
 <ul class="org-ul">
 <li>RPL 13: <a href="https://doc.rust-lang.org/book/ch13-00-functional-features.html">Functional Language Features: Iterators and Closures</a></li>
 </ul>
@@ -476,17 +489,17 @@ an adjacent topics.
 </ul>
 </div>
 </div>
-<div id="outline-container-org8186523" class="outline-2">
-<h2 id="org8186523">Week 5: Smart Pointers</h2>
-<div class="outline-text-2" id="text-org8186523">
+<div id="outline-container-org5dfd1dd" class="outline-2">
+<h2 id="org5dfd1dd">Week 5: Smart Pointers</h2>
+<div class="outline-text-2" id="text-org5dfd1dd">
 </div>
-<div id="outline-container-org846827f" class="outline-3">
-<h3 id="org846827f">Meeting 9</h3>
-<div class="outline-text-3" id="text-org846827f">
+<div id="outline-container-org4d32055" class="outline-3">
+<h3 id="org4d32055">Meeting 9</h3>
+<div class="outline-text-3" id="text-org4d32055">
 </div>
 <ul class="org-ul">
-<li><a id="org5613a02"></a>Title: <b>Boxes and Recursive Data</b><br />
-<div class="outline-text-4" id="text-org5613a02">
+<li><a id="orge07e257"></a>Title: <b>Boxes and Recursive Data</b><br />
+<div class="outline-text-4" id="text-orge07e257">
 <ul class="org-ul">
 <li>RPL 15.1: <a href="https://doc.rust-lang.org/stable/book/ch15-01-box.html">Using <code>Box&lt;T&gt;</code> to Point to Data on the Heap</a></li>
 <li>RPL 15.2: <a href="https://doc.rust-lang.org/stable/book/ch15-02-deref.html">Treating Smart Pointers Like Regular References with <code>Deref</code></a></li>
@@ -496,14 +509,14 @@ an adjacent topics.
 </li>
 </ul>
 </div>
-<div id="outline-container-org84319cc" class="outline-3">
-<h3 id="org84319cc">Meeting 10</h3>
-<div class="outline-text-3" id="text-org84319cc">
+<div id="outline-container-org18a591a" class="outline-3">
+<h3 id="org18a591a">Meeting 10</h3>
+<div class="outline-text-3" id="text-org18a591a">
 </div>
 <ul class="org-ul">
-<li><a id="orga8ae7e3"></a>Title: <b>Reference Counting and Internal Mutability</b><br /></li>
-<li><a id="orgd36af86"></a>Reading:<br />
-<div class="outline-text-4" id="text-orgd36af86">
+<li><a id="org29b1ad5"></a>Title: <b>Reference Counting and Internal Mutability</b><br /></li>
+<li><a id="org1a8b3fc"></a>Reading:<br />
+<div class="outline-text-4" id="text-org1a8b3fc">
 <ul class="org-ul">
 <li>RPL 15.4: <a href="https://doc.rust-lang.org/stable/book/ch15-04-rc.html"><code>Rc&lt;T&gt;</code>, the Reference Counted Smart Pointer</a></li>
 <li>RPL 15.5: <a href="https://doc.rust-lang.org/stable/book/ch15-05-interior-mutability.html"><code>RefCell&lt;T&gt;</code> and the Interior Mutability Pattern</a></li>
@@ -514,18 +527,18 @@ an adjacent topics.
 </ul>
 </div>
 </div>
-<div id="outline-container-org5315773" class="outline-2">
-<h2 id="org5315773">Week 6: Theory</h2>
-<div class="outline-text-2" id="text-org5315773">
+<div id="outline-container-org45ed32a" class="outline-2">
+<h2 id="org45ed32a">Week 6: Theory</h2>
+<div class="outline-text-2" id="text-org45ed32a">
 </div>
-<div id="outline-container-orgf37df94" class="outline-3">
-<h3 id="orgf37df94">Meeting 11</h3>
-<div class="outline-text-3" id="text-orgf37df94">
+<div id="outline-container-org7dfa887" class="outline-3">
+<h3 id="org7dfa887">Meeting 11</h3>
+<div class="outline-text-3" id="text-org7dfa887">
 </div>
 <ul class="org-ul">
-<li><a id="orgef12a02"></a>Title: <b>Blocks and Lifetimes</b><br /></li>
-<li><a id="org3b86720"></a>Reading:<br />
-<div class="outline-text-4" id="text-org3b86720">
+<li><a id="org4837db0"></a>Title: <b>Blocks and Lifetimes</b><br /></li>
+<li><a id="org60f888a"></a>Reading:<br />
+<div class="outline-text-4" id="text-org60f888a">
 <ul class="org-ul">
 <li>RPL 10.3: <a href="https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html">Validating References with Lifetimes</a></li>
 <li>Rustonomicon:
@@ -540,177 +553,177 @@ an adjacent topics.
 </li>
 </ul>
 </div>
-<div id="outline-container-org3fd9dfd" class="outline-3">
-<h3 id="org3fd9dfd">Meeting 12</h3>
-<div class="outline-text-3" id="text-org3fd9dfd">
+<div id="outline-container-org9352537" class="outline-3">
+<h3 id="org9352537">Meeting 12</h3>
+<div class="outline-text-3" id="text-org9352537">
 </div>
 <ul class="org-ul">
-<li><a id="org9794733"></a>Title: <b>Tuples and Paths</b><br /></li>
+<li><a id="org568d48f"></a>Title: <b>Tuples and Paths</b><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc81c4f2" class="outline-2">
-<h2 id="orgc81c4f2">Week 7: Concurrency</h2>
-<div class="outline-text-2" id="text-orgc81c4f2">
+<div id="outline-container-org0598f94" class="outline-2">
+<h2 id="org0598f94">Week 7: Concurrency</h2>
+<div class="outline-text-2" id="text-org0598f94">
 </div>
-<div id="outline-container-orgfd3d243" class="outline-3">
-<h3 id="orgfd3d243">Meeting 13</h3>
-<div class="outline-text-3" id="text-orgfd3d243">
+<div id="outline-container-orgb169bfe" class="outline-3">
+<h3 id="orgb169bfe">Meeting 13</h3>
+<div class="outline-text-3" id="text-orgb169bfe">
 </div>
 <ul class="org-ul">
-<li><a id="org748922c"></a>Title: <b>Message Passing</b><br /></li>
+<li><a id="org370d36d"></a>Title: <b>Message Passing</b><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3a1c86a" class="outline-2">
-<h2 id="org3a1c86a">Week 8: Midterm</h2>
-<div class="outline-text-2" id="text-org3a1c86a">
+<div id="outline-container-org1b6d7c3" class="outline-2">
+<h2 id="org1b6d7c3">Week 8: Midterm</h2>
+<div class="outline-text-2" id="text-org1b6d7c3">
 </div>
-<div id="outline-container-org45e3fac" class="outline-3">
-<h3 id="org45e3fac">Meeting 14</h3>
-<div class="outline-text-3" id="text-org45e3fac">
+<div id="outline-container-orgd0a1d02" class="outline-3">
+<h3 id="orgd0a1d02">Meeting 14</h3>
+<div class="outline-text-3" id="text-orgd0a1d02">
 </div>
 <ul class="org-ul">
-<li><a id="orgba78b1a"></a>Title: <b>Asynchronous Programming</b><br /></li>
+<li><a id="org3928366"></a>Title: <b>Asynchronous Programming</b><br /></li>
 </ul>
 </div>
-<div id="outline-container-org6c0ea9b" class="outline-3">
-<h3 id="org6c0ea9b">Meeting 15</h3>
-<div class="outline-text-3" id="text-org6c0ea9b">
+<div id="outline-container-org67e9744" class="outline-3">
+<h3 id="org67e9744">Meeting 15</h3>
+<div class="outline-text-3" id="text-org67e9744">
 </div>
 <ul class="org-ul">
-<li><a id="org213cce0"></a>Title: <b>Midterm Examination</b><br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org9e41a6d" class="outline-2">
-<h2 id="org9e41a6d">Week 9: Theory</h2>
-<div class="outline-text-2" id="text-org9e41a6d">
-</div>
-<div id="outline-container-org9a78379" class="outline-3">
-<h3 id="org9a78379">Meeting 16</h3>
-<div class="outline-text-3" id="text-org9a78379">
-</div>
-<ul class="org-ul">
-<li><a id="orgef3c889"></a>Title: <b>Conditionals</b><br /></li>
-</ul>
-</div>
-<div id="outline-container-org926fece" class="outline-3">
-<h3 id="org926fece">Meeting 17</h3>
-<div class="outline-text-3" id="text-org926fece">
-</div>
-<ul class="org-ul">
-<li><a id="orgcf081a6"></a>Title: <b>Linear Typed Lambda Calculus</b><br /></li>
+<li><a id="orgfbfcda5"></a>Title: <b>Midterm Examination</b><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaca274c" class="outline-2">
-<h2 id="orgaca274c">Week 10: TBD</h2>
-<div class="outline-text-2" id="text-orgaca274c">
+<div id="outline-container-org5dcb874" class="outline-2">
+<h2 id="org5dcb874">Week 9: Theory</h2>
+<div class="outline-text-2" id="text-org5dcb874">
 </div>
-<div id="outline-container-org12fd30a" class="outline-3">
-<h3 id="org12fd30a">Meeting 18</h3>
-<div class="outline-text-3" id="text-org12fd30a">
+<div id="outline-container-orgfa4f9f1" class="outline-3">
+<h3 id="orgfa4f9f1">Meeting 16</h3>
+<div class="outline-text-3" id="text-orgfa4f9f1">
 </div>
 <ul class="org-ul">
-<li><a id="orgbc3c4db"></a>Title: <b>TBD</b><br /></li>
+<li><a id="org72527cd"></a>Title: <b>Conditionals</b><br /></li>
 </ul>
 </div>
-<div id="outline-container-org0a3cc44" class="outline-3">
-<h3 id="org0a3cc44">Meeting 19</h3>
-<div class="outline-text-3" id="text-org0a3cc44">
+<div id="outline-container-org7d93055" class="outline-3">
+<h3 id="org7d93055">Meeting 17</h3>
+<div class="outline-text-3" id="text-org7d93055">
 </div>
 <ul class="org-ul">
-<li><a id="org018e11f"></a>Title: <b>Project Meetings</b><br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgf0a6d55" class="outline-2">
-<h2 id="orgf0a6d55">Week 11: TBD</h2>
-<div class="outline-text-2" id="text-orgf0a6d55">
-</div>
-<div id="outline-container-org4e6b1f0" class="outline-3">
-<h3 id="org4e6b1f0">Meeting 20</h3>
-<div class="outline-text-3" id="text-org4e6b1f0">
-</div>
-<ul class="org-ul">
-<li><a id="org980a1dd"></a>Title: <b>TBD</b><br /></li>
-</ul>
-</div>
-<div id="outline-container-org5d0db40" class="outline-3">
-<h3 id="org5d0db40">Meeting 21</h3>
-<div class="outline-text-3" id="text-org5d0db40">
-</div>
-<ul class="org-ul">
-<li><a id="orgf3ed37d"></a>Title: <b>Project Meetings</b><br /></li>
+<li><a id="org4a7fc3d"></a>Title: <b>Linear Typed Lambda Calculus</b><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org976727b" class="outline-2">
-<h2 id="org976727b">Week 12: TBD</h2>
-<div class="outline-text-2" id="text-org976727b">
+<div id="outline-container-orgb69b756" class="outline-2">
+<h2 id="orgb69b756">Week 10: TBD</h2>
+<div class="outline-text-2" id="text-orgb69b756">
 </div>
-<div id="outline-container-orge2837d5" class="outline-3">
-<h3 id="orge2837d5">Meeting 22</h3>
-<div class="outline-text-3" id="text-orge2837d5">
+<div id="outline-container-org1ff28c8" class="outline-3">
+<h3 id="org1ff28c8">Meeting 18</h3>
+<div class="outline-text-3" id="text-org1ff28c8">
 </div>
 <ul class="org-ul">
-<li><a id="org6c47bca"></a>Title: <b>TBD</b><br /></li>
+<li><a id="org0272abd"></a>Title: <b>TBD</b><br /></li>
 </ul>
 </div>
-<div id="outline-container-orgf20e0c8" class="outline-3">
-<h3 id="orgf20e0c8">Meeting 23</h3>
-<div class="outline-text-3" id="text-orgf20e0c8">
+<div id="outline-container-org7c4543d" class="outline-3">
+<h3 id="org7c4543d">Meeting 19</h3>
+<div class="outline-text-3" id="text-org7c4543d">
 </div>
 <ul class="org-ul">
-<li><a id="orgb64d223"></a>Title: <b>Project Meetings</b><br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgbdd566c" class="outline-2">
-<h2 id="orgbdd566c">Week 13: TBD</h2>
-<div class="outline-text-2" id="text-orgbdd566c">
-</div>
-<div id="outline-container-org83c36e4" class="outline-3">
-<h3 id="org83c36e4">Meeting 24</h3>
-<div class="outline-text-3" id="text-org83c36e4">
-</div>
-<ul class="org-ul">
-<li><a id="org528ec7e"></a>Title: <b>TBD</b><br /></li>
+<li><a id="org3dfc880"></a>Title: <b>Project Meetings</b><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfbe0d03" class="outline-2">
-<h2 id="orgfbe0d03">Week 14: Final Project</h2>
-<div class="outline-text-2" id="text-orgfbe0d03">
+<div id="outline-container-org3ed3ee0" class="outline-2">
+<h2 id="org3ed3ee0">Week 11: TBD</h2>
+<div class="outline-text-2" id="text-org3ed3ee0">
 </div>
-<div id="outline-container-orgb29ae1e" class="outline-3">
-<h3 id="orgb29ae1e">Meeting 25</h3>
-<div class="outline-text-3" id="text-orgb29ae1e">
+<div id="outline-container-orgb3f38da" class="outline-3">
+<h3 id="orgb3f38da">Meeting 20</h3>
+<div class="outline-text-3" id="text-orgb3f38da">
 </div>
 <ul class="org-ul">
-<li><a id="orgaa82061"></a>Title: <b>TBD</b><br /></li>
+<li><a id="orgdf19290"></a>Title: <b>TBD</b><br /></li>
 </ul>
 </div>
-<div id="outline-container-org57d8194" class="outline-3">
-<h3 id="org57d8194">Meeting 26</h3>
-<div class="outline-text-3" id="text-org57d8194">
+<div id="outline-container-orgd0d5d77" class="outline-3">
+<h3 id="orgd0d5d77">Meeting 21</h3>
+<div class="outline-text-3" id="text-orgd0d5d77">
 </div>
 <ul class="org-ul">
-<li><a id="org1524473"></a>Title: <b>Final Project Presentations</b><br /></li>
+<li><a id="org2d30b4f"></a>Title: <b>Project Meetings</b><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f0c4b6" class="outline-2">
-<h2 id="org4f0c4b6">Week 15: Final Project</h2>
-<div class="outline-text-2" id="text-org4f0c4b6">
+<div id="outline-container-org7a858ee" class="outline-2">
+<h2 id="org7a858ee">Week 12: TBD</h2>
+<div class="outline-text-2" id="text-org7a858ee">
 </div>
-<div id="outline-container-orgae36626" class="outline-3">
-<h3 id="orgae36626">Meeting 27</h3>
-<div class="outline-text-3" id="text-orgae36626">
+<div id="outline-container-org94d6873" class="outline-3">
+<h3 id="org94d6873">Meeting 22</h3>
+<div class="outline-text-3" id="text-org94d6873">
 </div>
 <ul class="org-ul">
-<li><a id="org6af23d9"></a>Title: <b>Final Project Presentations</b><br /></li>
+<li><a id="org31d55b1"></a>Title: <b>TBD</b><br /></li>
+</ul>
+</div>
+<div id="outline-container-org7919e0e" class="outline-3">
+<h3 id="org7919e0e">Meeting 23</h3>
+<div class="outline-text-3" id="text-org7919e0e">
+</div>
+<ul class="org-ul">
+<li><a id="orgcd3c0bd"></a>Title: <b>Project Meetings</b><br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb95ec0b" class="outline-2">
+<h2 id="orgb95ec0b">Week 13: TBD</h2>
+<div class="outline-text-2" id="text-orgb95ec0b">
+</div>
+<div id="outline-container-org5e1119c" class="outline-3">
+<h3 id="org5e1119c">Meeting 24</h3>
+<div class="outline-text-3" id="text-org5e1119c">
+</div>
+<ul class="org-ul">
+<li><a id="org8f51ad6"></a>Title: <b>TBD</b><br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org83d1df8" class="outline-2">
+<h2 id="org83d1df8">Week 14: Final Project</h2>
+<div class="outline-text-2" id="text-org83d1df8">
+</div>
+<div id="outline-container-org7ec086a" class="outline-3">
+<h3 id="org7ec086a">Meeting 25</h3>
+<div class="outline-text-3" id="text-org7ec086a">
+</div>
+<ul class="org-ul">
+<li><a id="org228a0df"></a>Title: <b>TBD</b><br /></li>
+</ul>
+</div>
+<div id="outline-container-org3369a4a" class="outline-3">
+<h3 id="org3369a4a">Meeting 26</h3>
+<div class="outline-text-3" id="text-org3369a4a">
+</div>
+<ul class="org-ul">
+<li><a id="org20c7f58"></a>Title: <b>Final Project Presentations</b><br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9416131" class="outline-2">
+<h2 id="org9416131">Week 15: Final Project</h2>
+<div class="outline-text-2" id="text-org9416131">
+</div>
+<div id="outline-container-org5ce592c" class="outline-3">
+<h3 id="org5ce592c">Meeting 27</h3>
+<div class="outline-text-3" id="text-org5ce592c">
+</div>
+<ul class="org-ul">
+<li><a id="org8e097fc"></a>Title: <b>Final Project Presentations</b><br /></li>
 </ul>
 </div>
 </div>

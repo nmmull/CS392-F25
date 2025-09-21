@@ -1,0 +1,128 @@
+#+title: Assignment 3
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../myStyle.css" />
+#+OPTIONS: html-style:nil H:2 toc:1 num:nil
+#+HTML_LINK_HOME: http://nmmull.github.io/CS392-F25/index.html
+This assignment due (roughly) *Thursday 9/25 by 8:00 PM*. You'll need to submit
+a ~.zip~ file containing a dune project named ~salt1~ on Gradescope.
+You can find the starter code at the newly minted [[https://github.com/nmmull/salt392][salt392]]
+repository. Please make sure to run ~dune clean~ before you submit,
+i.e., don't submit the ~_build~ directory.
+
+In this assignment you'll be implementing the subset of Rust that we
+discussed in lecture. It would be a bit too much at the moment to
+implement this in Rust, so we're going to use OCaml.
+
+As we discuss endlessly in ~CS320~, there three things we need to
+implement for an interpreter: a *parser*, a *type checker* and an
+*evaluator*.
+
+** Parser
+
+For this course, we're not going to worry about parsers, the
+interpreter comes with a parser.  But this has a couple caveats:
++ it's more convenient to build a /single/ parser and use it for every
+  interpreter we'll use.  This means our parser──and in particular our
+  AST──has a lot of stuff we won't be working with initially.
++ Since we're using a single parser, we might as well trick it out
+  with nice error messages.  To do this, our AST carries metadata
+  about the location of subexpressions in the source program (this is
+  how we know /where/ the error is when we display the message). This
+  isn't terribly complex, but it does affect the way we work with ASTs
+  slightly: we cannot pattern match on an AST directly, we have to
+  pattern match on its associated data, which we get by record access
+  (ASTs are represented as records).  This is why──in ~saltO~, for
+  example──you'll see things like:
+
+  #+begin_src ocaml
+    match expr.expr with
+    | ...
+    | _ -> Error (not_implemented expr.meta)
+  #+end_src
+
+  ~expr.expr~ is the "actual" AST whereas ~expr.meta~ is the location
+  information for ~expr~.
+
+** Type Checker
+
+We know what to do here.  I've given you some typing rules, you need
+to implement them.
+
+Just /one/ thing: in order to simplify things, we'll always work
+within ~('a, Error_msg.t) result~ to deal with type errors.[fn::This
+allows us to have a uniform error-handling approach for the parser and
+the type checker.]  The module ~Error_msg~ deals with error messages.
+For the most part, you don't need to know what's going on here (though
+I recommend looking if you're interested).  The only important
+function is ~Error_msg.mk~, which takes the location metadata of an
+AST and a string for the message itself.  To make things
+easy on you, I'll always include a collection of smart constructors
+in a module called ~Errors~ for the kinds of errors you will encounter
+in writing the type checker.  When you're writing an error branch in
+the type checker, you should use ~Error e~, where ~e~ uses a smart
+constructor.  For example, from ~salt0~:
+
+#+begin_src ocaml
+  match e.expr with
+  | PlaceExpr (Var x) -> (
+      match Map.find_opt x ctxt with
+      | None -> Error (unknown_var e.meta x)
+      | Some ty -> Ok ty
+    )
+  | ...
+#+end_src
+
+~unknown_var~ is a smart constructor which takes a variable name and
+the location information for that variable.  For example, running the
+interpreter on the program:
+#+begin_src rust
+fn main() {
+    let x = 2;
+    let z = x + y;
+}
+#+end_src
+will display the error message:
+#+begin_src text
+  error: unknown variable `y`
+   --> lib/example.rs:3:17
+    |
+  3 |     let z = x + y;
+    |                 ^ unknown variable `y`
+#+end_src
+
+Again, there are quite a few parts of the AST that we're not
+using. You should use the ~not_implemented~ smart constructor when you
+come across something we haven't talked about.
+
+There is one notable tricky case for types: ~BorrowTy~.
+
++ For now, always assume that a reference is ~Immutable~.
++ Eventually, we will need references to keep track of multiple place
+  expressions, so the constructor ~BorrowTy~ keeps track of a /list/
+  of place expressions. For now, always assume that the list is a
+  singleton.
++ ~BorrowTy~ also keeps track of the underlying type associated the
+  reference.  This is does so that it's possible to pretty-print the
+  borrow type as it would be printed by Rust (e.g., ~&i32~ and not
+  ~&x~).
+
+** Evaluator
+
+You know the evaluation rules, you need to build the evaluator.  And
+there's no need to deal with errors; because of type soundness, if your
+program type checks, evaluation is guaranteed to succeed (which
+means ~assert false~ will be used quite a bit).
+
+** Closing Remarks
+
+There's a lot I'm probably forgetting to mention here. This is very
+much an experiment, y'all are helping me stress test these
+assignments.  Please ask lots of questions, and let me know if you
+have any thoughts about improvements.  Also, if you want a *hard mode*
+for this assignment, I'll just say that there's a couple parts of the
+language that are "fair game" in the sense that they don't require new
+concepts, but are not implemented in the base ~salt1~. These include:
++ Booleans
++ Assert statements
++ Arithmetic/Boolean operators
+Generally speaking, explore the AST, see if there's anything you want
+to add. If you're really feeling up to it, extend the parser(!)
