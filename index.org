@@ -139,11 +139,16 @@ an adjacent topics.
 *** Reading:
 + RPL 10.1: [[https://doc.rust-lang.org/book/ch10-01-syntax.html][Generic Data Types]]
 + RPL 10.2: [[https://doc.rust-lang.org/book/ch10-02-traits.html][Traits: Defining Shared Behavior]]
+*** Material:
+**** Slides: [[file:Slides/07-traits.pdf][07-traits.pdf]]
+**** Examples: [[file:Code/07-lecture/main.rs][main.rs]]
 ** Meeting 8
 *** Title: *Closures and Iterators*
 *** Reading:
 + RPL 13: [[https://doc.rust-lang.org/book/ch13-00-functional-features.html][Functional Language Features: Iterators and Closures]]
 *** Material:
+**** Slides: [[file:Slides/08-closures-iterators.pdf][08-closures-iterators.pdf]]
+**** Examples: [[file:Code/08-lecture/main.rs][main.rs]]
 **** Assignment: [[file:Assignments/hw4.org][hw4.html]]
 * Week 5: Smart Pointers
 ** Meeting 9
