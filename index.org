@@ -166,7 +166,7 @@ an adjacent topics.
 + RPL 15.6: [[https://doc.rust-lang.org/stable/book/ch15-06-reference-cycles.html][Reference Cycles Can Leak Memory]]
 *** Material:
 **** Slides: [[file:Slides/10-lifetimes.pdf][10-lifetimes.pdf]]
-* Week 6: Theory
+* Week 6: Theory ✓
 ** Meeting 11
 *** Title: *Mutable References*
 ** Meeting 12
