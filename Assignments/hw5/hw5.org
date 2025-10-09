@@ -1,0 +1,361 @@
+#+title: Assignment 5
+#+HTML_MATHJAX: align: left indent: 2em
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../myStyle.css" />
+#+OPTIONS: html-style:nil H:2 toc:2 todo:nil author:nil date:nil
+#+HTML_LINK_HOME: ../../index.html
+The following assignment is due *Thursday 8/16 by 8:00 PM*.  You'll
+need to submit a single Cargo project named ~hw5~ on Gradescope. You
+can get the setup with:
+#+begin_src
+cargo new hw5
+#+end_src
+Please make sure to run ~cargo clean~ before submitting, i.e., don't
+sumbit a ~target~ directory or a ~.git~ directory.
+
+The purpose of this assignment is to force y'all to work with a
+slightly larger Rust program.  There are many projects we could do to
+get this kind of practice, but I like PLs, so we're going to build a
+forth interpreter.
+
+[[https://en.wikipedia.org/wiki/Forth_(programming_language)][Forth]] is a low-level stack-oriented PL.  The beauty of forth its
+simplicity. For a quick tutorial on forth, I recommend this very nice
+[[https://skilldrick.github.io/easyforth/#introduction][blog post]].
+
+#+begin_quote
+*Remark.* I'm going to leave a lot of getting familiar with forth to
+you.  If you need some assistance with understanding forth, please
+reach out on Piazza or by email.  In particular, I'd recommend looking
+at [[https://gforth.org/manual/Conditional-execution-Tutorial.html][Conditional Execution]] and [[https://gforth.org/manual/Calls-and-returns.html][Recursion]] in the gforth manual to get a
+sense of how they work.
+
+#+end_quote
+
+Building a forth interpreter in Rust is made quite a bit easier by the
+high-level abstractions Rust provides.  For example, we can create a
+very clear abstract representation of a machine configuration (to be
+updated while evaluating a program).
+
+#+begin_src rust
+  enum Command {
+      Push(i32),
+      Drop,
+      Dup,
+      Dup2,
+      Rot,
+      Swap,
+      Print,
+      PrintStack,
+      Add,
+      Sub,
+      Mul,
+      Div,
+      Mod,
+      Lte,
+      If,
+      EndIf,
+      Recurse(Option<Program>),
+  }
+
+  struct Program(Vec<Command>);
+  struct Stack(Vec<i32>);
+  type Dict = HashMap <String, Program>;
+
+  enum State {
+      Compile,
+      Interpret,
+  }
+
+  struct Config {
+      dict: Dict,
+      stack: Stack,
+      state: State,
+      compiled: Program,
+      compiled_word: String,
+  }
+
+  impl Stack {
+      fn eval_prog...{...}
+  }
+
+  impl Config {
+      fn eval_word...{...}
+  }
+
+  fn main() {...}
+#+end_src
+
+* Evaluation
+
+At the core of a forth interpreter is a function that evaluates the
+program associated with a word, updating the machine configuration as
+necessary.  The interpreter keeps track of a dictionary of words that
+store programs in a basic command langauge (17 commands total).  It's
+possible to define new words and add them to this dictionary using
+[[https://gforth.org/manual/Colon-Definitions-Tutorial.html][Colon Definitions]].  The small-step semantics of our little forth
+fragment is given as follows.  In these rules, a configuration is of
+the form
+\begin{align*}
+  (D, S, T, w, Q, P)
+\end{align*}
+where each part of the configuration is given in this following table.
+| $D$ | dictionary mapping words to programs                                 |
+| $S$ | stack                                                                |
+| $T$ | state ($\mathsf{I}$ for interpreting and $\mathsf{C}$ for compiling) |
+| $Q$ | program being compile                                                |
+| $w$ | name of program being compiled                                       |
+| $P$ | program being evaluated                                              |
+
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{push}
+\UnaryInfC{$(D, S, \mathsf{I}, \varnothing, \varnothing, n :: P) \longrightarrow (D, n :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{drop}
+\UnaryInfC{$(D, n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{drop} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{dup}
+\UnaryInfC{$(D, n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{dup} \ P) \longrightarrow (D, n :: n :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{2dup}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{2dup} \ P) \longrightarrow (D, m :: n :: m :: n :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{rot}
+\UnaryInfC{$(D, m :: n :: p :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{rot} \ P) \longrightarrow (D, p :: m :: n :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{swap}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{swap} \ P) \longrightarrow (D, n :: m :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{print}
+\UnaryInfC{$(D, n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{.} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{printStack}
+\UnaryInfC{$(D, S, \mathsf{I}, \varnothing, \varnothing, \texttt{.s} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{add}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{+} \ P) \longrightarrow (D, (n + m) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{sub}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{-} \ P) \longrightarrow (D, (n - m) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{mul}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{*} \ P) \longrightarrow (D, n m :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$m \neq 0$}
+\RightLabel{div}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{/} \ P) \longrightarrow (D, (n / m) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$m \neq 0$}
+\RightLabel{mod}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{mod} \ P) \longrightarrow (D, (n \mod m) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$n \leq m$}
+\RightLabel{lte-true}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{<=} \ P) \longrightarrow (D, (-1) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$n > m$}
+\RightLabel{let-false}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{<=} \ P) \longrightarrow (D, 0 :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$n \neq 0$}
+\RightLabel{if-true}
+\UnaryInfC{$(D, n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{if} \ Q \ \texttt{endif} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, Q \ P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{if-false}
+\UnaryInfC{$(D, 0 :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{if} \ Q \ \texttt{endif} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{recurse}
+\UnaryInfC{$(D, S, \mathsf{I}, \varnothing, \varnothing, \texttt{recurse}(Q) \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, Q \ P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{colon-def}
+\UnaryInfC{$(D, S, \mathsf{I}, \varnothing, \varnothing, \texttt{:} \ P) \longrightarrow (D, S, \mathsf{C}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{define-word}
+\UnaryInfC{$(D, S, \mathsf{C}, \varnothing, \varnothing, w \ P) \longrightarrow (D, S, \mathsf{C}, \varnothing, w, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{compile}
+\UnaryInfC{$(D, S, \mathsf{C}, Q, w, w' \ P) \longrightarrow (D, S, \mathsf{C}, Q \ D[w'], w, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{end-colon-def}
+\UnaryInfC{$(D, S, \mathsf{C}, Q, w, \texttt{;} \ P) \longrightarrow (D[w \mapsto Q], S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+A couple notes about these semantics:
++ The print command has the side effect of printing the top element of
+  the stack, and the printStack command has the side effect of
+  printing the entire stack (note that ~Stack~ implements ~fmt::Format~).
++ All stuck configurations are considered error states.
++ Note that the colon moves changes the state to be compiling, and the semicolon
+  moves back into interpreting.
++ The semantics while in the interpreting state roughly speaking
+  corresponds to ~eval_prog~ whereas the semantics while in the
+  compiling state corresponds to ~eval_word~.
++ A usual, the way in which the semantics is presented does not always
+  correspond to an implementation. For example, in the case of
+  conditionals, there's the added concern of nested conditionals that
+  is not immediately captured by the rules above.
+
+* Recursion
+
+The trickiest part of this assignment is dealing with
+recursion. You'll notice that the ~recurse~ command carries an
+~Option<Program>~.  Roughly speaking the ~recurse~ command just keeps
+track of what program it needs to run (see the *recurse* rule above).
+When defining a recursive function, the ~recurse~ command has to keep
+track of the program currently being defined.  So, to start, the
+~recurse~ command just carries ~None~ (otherwise, we'd have an
+infinite data structure).
+
+When you /compile/ a word that uses recursion, the ~recurse~ commands in the
+program need to keep track of the program itself, so in this case the
+~None~ should be replace with ~Some(p)~ where ~p~ is the program which
+recursing should run.
+
+You should convince yourself that this is necessary, but as a basic example, if I write the program:
+
+#+begin_src text
+  : foo 1 + recurse ;
+  : bar 2 + recurse foo ;
+#+end_src
+The word ~foo~ will be compiled to a program of the form:
+#+begin_src rust
+  vec![Push(1), Add, Recurse(None)]
+#+end_src
+The word ~bar~ will be compiled to a program of the form:
+#+begin_src rust
+  vec![
+      Push(2),
+      Add,
+      Recurse(None),
+      Push(1),
+      Add,
+      Recurse(vec![Push(1), Add, Recurse(None)])
+  ]
+#+end_src
+The point: we need to be able to distinguish within a program which
+~recurse~ commands correspond uses in the definition of the word, and
+which correspond to compiled words.
+
+* Getting started
+
+To get you started, I'm providing some [[file:main.rs][starter code]].  Part of the
+assignment will be reading some Rust code and understanding how it
+works. In particular, there are several traits used throughout, I'd
+recommend reading the documentation on them and experimenting with
+them.
+
+Also, here's a little example program to play around with:
+#+begin_src
+: and * -1 * ;
+: >= swap <= ;
+: = 2dup <= rot rot >= and ;
+: or + -1 <= ;
+: not 0 = ;
+: < -1 + <= ;
+: > swap < ;
+
+: fib
+  dup dup 0 = swap 1 = or not
+  if
+    dup -1 + recurse swap
+    -2 + recurse
+    +
+  endif
+;
+
+11 fib .
+
+: fact
+  dup 1 >
+  if
+    dup -1 + recurse *
+  endif
+;
+
+5 fact .
+
+: fact_loop_aux
+  dup 0 >
+  if
+    dup rot rot * swap
+    -1 +
+    recurse
+  endif
+;
+
+: fact_loop 1 swap fact_loop_aux drop ;
+
+: fact_loop_aux 0 ;
+
+5 fact_loop .
+#+end_src
+
+* Hard Mode
+
+One unsatisfying feature of how recursion is handled is that every
+time you compile a recursive function, you have to clone the entire
+program and give it to the ~recurse~ commands.  If it's a long program
+this can become a lot.
+
+The challenge is to rewrite the interpreter so that programs are
+reference counted. That way, a ~recurse~ command can keep a reference
+to the program it needs to run.  Be careful not to create a reference
+cycle!

@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-09 Thu 10:41 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Assignment 5</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../../myStyle.css" />
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'left',
+      displayIndent: '2em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'left',
+      displayIndent: '2em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up"><a href="../../index.html">↩</a></div><div id="content" class="content">
+<h1 class="title">Assignment 5</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2cb2a3e">1. Evaluation</a></li>
+<li><a href="#org5b99af0">2. Recursion</a></li>
+<li><a href="#orgeefaca6">3. Getting started</a></li>
+<li><a href="#orgd06b0cb">4. Hard Mode</a></li>
+</ul>
+</div>
+</div>
+<p>
+The following assignment is due <b>Thursday 8/16 by 8:00 PM</b>.  You'll
+need to submit a single Cargo project named <code>hw5</code> on Gradescope. You
+can get the setup with:
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">cargo new hw5
+</pre>
+</div>
+<p>
+Please make sure to run <code>cargo clean</code> before submitting, i.e., don't
+sumbit a <code>target</code> directory or a <code>.git</code> directory.
+</p>
+
+<p>
+The purpose of this assignment is to force y'all to work with a
+slightly larger Rust program.  There are many projects we could do to
+get this kind of practice, but I like PLs, so we're going to build a
+forth interpreter.
+</p>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Forth_(programming_language)">Forth</a> is a low-level stack-oriented PL.  The beauty of forth its
+simplicity. For a quick tutorial on forth, I recommend this very nice
+<a href="https://skilldrick.github.io/easyforth/#introduction">blog post</a>.
+</p>
+
+<blockquote>
+<p>
+<b>Remark.</b> I'm going to leave a lot of getting familiar with forth to
+you.  If you need some assistance with understanding forth, please
+reach out on Piazza or by email.  In particular, I'd recommend looking
+at <a href="https://gforth.org/manual/Conditional-execution-Tutorial.html">Conditional Execution</a> and <a href="https://gforth.org/manual/Calls-and-returns.html">Recursion</a> in the gforth manual to get a
+sense of how they work.
+</p>
+</blockquote>
+
+<p>
+Building a forth interpreter in Rust is made quite a bit easier by the
+high-level abstractions Rust provides.  For example, we can create a
+very clear abstract representation of a machine configuration (to be
+updated while evaluating a program).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #a020f0;">enum</span> <span style="color: #228b22;">Command</span> {
+    <span style="color: #228b22;">Push</span>(<span style="color: #228b22;">i32</span>),
+    <span style="color: #228b22;">Drop</span>,
+    <span style="color: #228b22;">Dup</span>,
+    <span style="color: #228b22;">Dup2</span>,
+    <span style="color: #228b22;">Rot</span>,
+    <span style="color: #228b22;">Swap</span>,
+    <span style="color: #228b22;">Print</span>,
+    <span style="color: #228b22;">PrintStack</span>,
+    <span style="color: #228b22;">Add</span>,
+    <span style="color: #228b22;">Sub</span>,
+    <span style="color: #228b22;">Mul</span>,
+    <span style="color: #228b22;">Div</span>,
+    <span style="color: #228b22;">Mod</span>,
+    <span style="color: #228b22;">Lte</span>,
+    <span style="color: #228b22;">If</span>,
+    <span style="color: #228b22;">EndIf</span>,
+    <span style="color: #228b22;">Recurse</span>(<span style="color: #228b22;">Option</span>&lt;<span style="color: #228b22;">Program</span>&gt;),
+}
+
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">Program</span>(<span style="color: #228b22;">Vec</span>&lt;<span style="color: #228b22;">Command</span>&gt;);
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">Stack</span>(<span style="color: #228b22;">Vec</span>&lt;<span style="color: #228b22;">i32</span>&gt;);
+<span style="color: #a020f0;">type</span> <span style="color: #228b22;">Dict</span> = <span style="color: #228b22;">HashMap</span> &lt;<span style="color: #228b22;">String</span>, <span style="color: #228b22;">Program</span>&gt;;
+
+<span style="color: #a020f0;">enum</span> <span style="color: #228b22;">State</span> {
+    <span style="color: #228b22;">Compile</span>,
+    <span style="color: #228b22;">Interpret</span>,
+}
+
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">Config</span> {
+    <span style="color: #a0522d;">dict</span>: <span style="color: #228b22;">Dict</span>,
+    <span style="color: #a0522d;">stack</span>: <span style="color: #228b22;">Stack</span>,
+    <span style="color: #a0522d;">state</span>: <span style="color: #228b22;">State</span>,
+    <span style="color: #a0522d;">compiled</span>: <span style="color: #228b22;">Program</span>,
+    <span style="color: #a0522d;">compiled_word</span>: <span style="color: #228b22;">String</span>,
+}
+
+<span style="color: #a020f0;">impl</span> <span style="color: #228b22;">Stack</span> {
+    <span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">eval_prog</span>...{...}
+}
+
+<span style="color: #a020f0;">impl</span> <span style="color: #228b22;">Config</span> {
+    <span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">eval_word</span>...{...}
+}
+
+<span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">main</span>() {...}
+</pre>
+</div>
+<div id="outline-container-org2cb2a3e" class="outline-2">
+<h2 id="org2cb2a3e"><span class="section-number-2">1.</span> Evaluation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+At the core of a forth interpreter is a function that evaluates the
+program associated with a word, updating the machine configuration as
+necessary.  The interpreter keeps track of a dictionary of words that
+store programs in a basic command langauge (17 commands total).  It's
+possible to define new words and add them to this dictionary using
+<a href="https://gforth.org/manual/Colon-Definitions-Tutorial.html">Colon Definitions</a>.  The small-step semantics of our little forth
+fragment is given as follows.  In these rules, a configuration is of
+the form
+</p>
+\begin{align*}
+  (D, S, T, w, Q, P)
+\end{align*}
+<p>
+where each part of the configuration is given in this following table.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">\(D\)</td>
+<td class="org-left">dictionary mapping words to programs</td>
+</tr>
+
+<tr>
+<td class="org-left">\(S\)</td>
+<td class="org-left">stack</td>
+</tr>
+
+<tr>
+<td class="org-left">\(T\)</td>
+<td class="org-left">state (\(\mathsf{I}\) for interpreting and \(\mathsf{C}\) for compiling)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(Q\)</td>
+<td class="org-left">program being compile</td>
+</tr>
+
+<tr>
+<td class="org-left">\(w\)</td>
+<td class="org-left">name of program being compiled</td>
+</tr>
+
+<tr>
+<td class="org-left">\(P\)</td>
+<td class="org-left">program being evaluated</td>
+</tr>
+</tbody>
+</table>
+
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{push}
+\UnaryInfC{$(D, S, \mathsf{I}, \varnothing, \varnothing, n :: P) \longrightarrow (D, n :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{drop}
+\UnaryInfC{$(D, n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{drop} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{dup}
+\UnaryInfC{$(D, n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{dup} \ P) \longrightarrow (D, n :: n :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{2dup}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{2dup} \ P) \longrightarrow (D, m :: n :: m :: n :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{rot}
+\UnaryInfC{$(D, m :: n :: p :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{rot} \ P) \longrightarrow (D, p :: m :: n :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{swap}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{swap} \ P) \longrightarrow (D, n :: m :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{print}
+\UnaryInfC{$(D, n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{.} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{printStack}
+\UnaryInfC{$(D, S, \mathsf{I}, \varnothing, \varnothing, \texttt{.s} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{add}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{+} \ P) \longrightarrow (D, (n + m) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{sub}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{-} \ P) \longrightarrow (D, (n - m) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{mul}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{*} \ P) \longrightarrow (D, n m :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$m \neq 0$}
+\RightLabel{div}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{/} \ P) \longrightarrow (D, (n / m) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$m \neq 0$}
+\RightLabel{mod}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{mod} \ P) \longrightarrow (D, (n \mod m) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$n \leq m$}
+\RightLabel{lte-true}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{<=} \ P) \longrightarrow (D, (-1) :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$n > m$}
+\RightLabel{let-false}
+\UnaryInfC{$(D, m :: n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{<=} \ P) \longrightarrow (D, 0 :: S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$n \neq 0$}
+\RightLabel{if-true}
+\UnaryInfC{$(D, n :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{if} \ Q \ \texttt{endif} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, Q \ P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{if-false}
+\UnaryInfC{$(D, 0 :: S, \mathsf{I}, \varnothing, \varnothing, \texttt{if} \ Q \ \texttt{endif} \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{recurse}
+\UnaryInfC{$(D, S, \mathsf{I}, \varnothing, \varnothing, \texttt{recurse}(Q) \ P) \longrightarrow (D, S, \mathsf{I}, \varnothing, \varnothing, Q \ P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{colon-def}
+\UnaryInfC{$(D, S, \mathsf{I}, \varnothing, \varnothing, \texttt{:} \ P) \longrightarrow (D, S, \mathsf{C}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{define-word}
+\UnaryInfC{$(D, S, \mathsf{C}, \varnothing, \varnothing, w \ P) \longrightarrow (D, S, \mathsf{C}, \varnothing, w, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{compile}
+\UnaryInfC{$(D, S, \mathsf{C}, Q, w, w' \ P) \longrightarrow (D, S, \mathsf{C}, Q \ D[w'], w, P)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{end-colon-def}
+\UnaryInfC{$(D, S, \mathsf{C}, Q, w, \texttt{;} \ P) \longrightarrow (D[w \mapsto Q], S, \mathsf{I}, \varnothing, \varnothing, P)$}
+\end{prooftree}
+
+<p>
+A couple notes about these semantics:
+</p>
+<ul class="org-ul">
+<li>The print command has the side effect of printing the top element of
+the stack, and the printStack command has the side effect of
+printing the entire stack (note that <code>Stack</code> implements <code>fmt::Format</code>).</li>
+<li>All stuck configurations are considered error states.</li>
+<li>Note that the colon moves changes the state to be compiling, and the semicolon
+moves back into interpreting.</li>
+<li>The semantics while in the interpreting state roughly speaking
+corresponds to <code>eval_prog</code> whereas the semantics while in the
+compiling state corresponds to <code>eval_word</code>.</li>
+<li>A usual, the way in which the semantics is presented does not always
+correspond to an implementation. For example, in the case of
+conditionals, there's the added concern of nested conditionals that
+is not immediately captured by the rules above.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5b99af0" class="outline-2">
+<h2 id="org5b99af0"><span class="section-number-2">2.</span> Recursion</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The trickiest part of this assignment is dealing with
+recursion. You'll notice that the <code>recurse</code> command carries an
+<code>Option&lt;Program&gt;</code>.  Roughly speaking the <code>recurse</code> command just keeps
+track of what program it needs to run (see the <b>recurse</b> rule above).
+When defining a recursive function, the <code>recurse</code> command has to keep
+track of the program currently being defined.  So, to start, the
+<code>recurse</code> command just carries <code>None</code> (otherwise, we'd have an
+infinite data structure).
+</p>
+
+<p>
+When you <i>compile</i> a word that uses recursion, the <code>recurse</code> commands in the
+program need to keep track of the program itself, so in this case the
+<code>None</code> should be replace with <code>Some(p)</code> where <code>p</code> is the program which
+recursing should run.
+</p>
+
+<p>
+You should convince yourself that this is necessary, but as a basic example, if I write the program:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">: foo 1 + recurse ;
+: bar 2 + recurse foo ;
+</pre>
+</div>
+<p>
+The word <code>foo</code> will be compiled to a program of the form:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #483d8b;">vec!</span>[<span style="color: #228b22;">Push</span>(1), <span style="color: #228b22;">Add</span>, <span style="color: #228b22;">Recurse</span>(<span style="color: #228b22;">None</span>)]
+</pre>
+</div>
+<p>
+The word <code>bar</code> will be compiled to a program of the form:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #483d8b;">vec!</span>[
+    <span style="color: #228b22;">Push</span>(2),
+    <span style="color: #228b22;">Add</span>,
+    <span style="color: #228b22;">Recurse</span>(<span style="color: #228b22;">None</span>),
+    <span style="color: #228b22;">Push</span>(1),
+    <span style="color: #228b22;">Add</span>,
+    <span style="color: #228b22;">Recurse</span>(<span style="color: #483d8b;">vec!</span>[<span style="color: #228b22;">Push</span>(1), <span style="color: #228b22;">Add</span>, <span style="color: #228b22;">Recurse</span>(<span style="color: #228b22;">None</span>)])
+]
+</pre>
+</div>
+<p>
+The point: we need to be able to distinguish within a program which
+<code>recurse</code> commands correspond uses in the definition of the word, and
+which correspond to compiled words.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeefaca6" class="outline-2">
+<h2 id="orgeefaca6"><span class="section-number-2">3.</span> Getting started</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+To get you started, I'm providing some <a href="main.rs">starter code</a>.  Part of the
+assignment will be reading some Rust code and understanding how it
+works. In particular, there are several traits used throughout, I'd
+recommend reading the documentation on them and experimenting with
+them.
+</p>
+
+<p>
+Also, here's a little example program to play around with:
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">: and * -1 * ;
+: &gt;= swap &lt;= ;
+: = 2dup &lt;= rot rot &gt;= and ;
+: or + -1 &lt;= ;
+: not 0 = ;
+: &lt; -1 + &lt;= ;
+: &gt; swap &lt; ;
+
+: fib
+  dup dup 0 = swap 1 = or not
+  if
+    dup -1 + recurse swap
+    -2 + recurse
+    +
+  endif
+;
+
+11 fib .
+
+: fact
+  dup 1 &gt;
+  if
+    dup -1 + recurse *
+  endif
+;
+
+5 fact .
+
+: fact_loop_aux
+  dup 0 &gt;
+  if
+    dup rot rot * swap
+    -1 +
+    recurse
+  endif
+;
+
+: fact_loop 1 swap fact_loop_aux drop ;
+
+: fact_loop_aux 0 ;
+
+5 fact_loop .
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd06b0cb" class="outline-2">
+<h2 id="orgd06b0cb"><span class="section-number-2">4.</span> Hard Mode</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+One unsatisfying feature of how recursion is handled is that every
+time you compile a recursive function, you have to clone the entire
+program and give it to the <code>recurse</code> commands.  If it's a long program
+this can become a lot.
+</p>
+
+<p>
+The challenge is to rewrite the interpreter so that programs are
+reference counted. That way, a <code>recurse</code> command can keep a reference
+to the program it needs to run.  Be careful not to create a reference
+cycle!
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

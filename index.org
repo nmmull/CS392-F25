@@ -55,7 +55,7 @@ an adjacent topics.
 | [[*Meeting 10][10-02]] | Smart Pointers II: ~Rc<T>~ and ~RefCell<T>~ | [[file:Assignments/hw4.org][A4 out]], A3 due          |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 11][10-07]] | Theory III: Mutable References (salt2)      |                         |
-| [[*Meeting 12][10-09]] | Theory IV: Lifetimes (Salt3)                | A5 out, A4 due          |
+| [[*Meeting 12][10-09]] | Theory IV: Lifetimes (Salt3)                | [[file:Assignments/hw5/hw5.org][A5 out]], A4 due          |
 |-------+---------------------------------------------+-------------------------|
 | 10-14 | *NO CLASS*                                  | Indigenous Peoples' Day |
 | [[*Meeting 13][10-16]] | Concurrency I: Message Passing              | A5 due                  |
