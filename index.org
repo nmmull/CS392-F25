@@ -51,16 +51,16 @@ an adjacent topics.
 | [[*Meeting 7][09-23]] | Functions I: Generics and Traits            |                         |
 | [[*Meeting 8][09-25]] | Functions II: Closures and Iterators        |                         |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 9][09-30]] | Smart Pointers I: Boxes, Recursive Data     |                         |
-| [[*Meeting 10][10-02]] | Smart Pointers II: ~Rc<T>~ and ~RefCell<T>~ | [[file:Assignments/hw4.org][A4 out]], A3 due          |
+| [[*Meeting 9][09-30]] | Basics III: Boxes, Recursive Data           |                         |
+| [[*Meeting 10][10-02]] | Basics IV: Lifetimes                        | [[file:Assignments/hw4.org][A4 out]], A3 due          |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 11][10-07]] | Theory III: Mutable References (salt2)      |                         |
-| [[*Meeting 12][10-09]] | Theory IV: Lifetimes (Salt3)                | [[file:Assignments/hw5/hw5.org][A5 out]], A4 due          |
+| [[*Meeting 12][10-09]] | Theory IV: Mutable References (salt2)       | [[file:Assignments/hw5/hw5.org][A5 out]], A4 due          |
 |-------+---------------------------------------------+-------------------------|
 | 10-14 | *NO CLASS*                                  | Indigenous Peoples' Day |
-| [[*Meeting 13][10-16]] | Concurrency I: Message Passing              | A5 due                  |
+| [[*Meeting 13][10-16]] | Smart Pointers: ~Rc<T>~ and ~RefCell<T>~    | A5 due                  |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 14][10-21]] | Concurrency II: Asynchronous Programming    |                         |
+| [[*Meeting 14][10-21]] | TBD                                         |                         |
 | [[*Meeting 15][10-23]] | *Midterm Exam*                              | A6 out                  |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 16][10-28]] | Theory V: Conditionals                      |                         |
@@ -150,7 +150,7 @@ an adjacent topics.
 **** Slides: [[file:Slides/08-closures-iterators.pdf][08-closures-iterators.pdf]]
 **** Examples: [[file:Code/08-lecture/main.rs][main.rs]]
 **** Assignment: [[file:Assignments/hw4.org][hw4.html]]
-* Week 5: Smart Pointers ✓
+* Week 5: Basics ✓
 ** Meeting 9
 *** Title: *Boxes and Recursive Data*
 + RPL 15.1: [[https://doc.rust-lang.org/stable/book/ch15-01-box.html][Using ~Box<T>~ to Point to Data on the Heap]]
@@ -159,17 +159,6 @@ an adjacent topics.
 *** Material:
 **** Slides: [[file:Slides/09-box.pdf][09-box.pdf]]
 ** Meeting 10
-*** Title: *Reference Counting and Internal Mutability*
-*** Reading:
-+ RPL 15.4: [[https://doc.rust-lang.org/stable/book/ch15-04-rc.html][~Rc<T>~, the Reference Counted Smart Pointer]]
-+ RPL 15.5: [[https://doc.rust-lang.org/stable/book/ch15-05-interior-mutability.html][~RefCell<T>~ and the Interior Mutability Pattern]]
-+ RPL 15.6: [[https://doc.rust-lang.org/stable/book/ch15-06-reference-cycles.html][Reference Cycles Can Leak Memory]]
-*** Material:
-**** Slides: [[file:Slides/10-lifetimes.pdf][10-lifetimes.pdf]]
-* Week 6: Theory ✓
-** Meeting 11
-*** Title: *Mutable References*
-** Meeting 12
 *** Title: *Lifetimes*
 *** Reading:
 + RPL 10.3: [[https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html][Validating References with Lifetimes]]
@@ -178,9 +167,20 @@ an adjacent topics.
   + 3.3: [[https://doc.rust-lang.org/nomicon/lifetimes.html][Lifetimes]]
   + 3.4: [[https://doc.rust-lang.org/nomicon/lifetime-mismatch.html][Limits of Lifetimes]]
   + 3.5: [[https://doc.rust-lang.org/nomicon/lifetime-elision.html][Lifetime Elision]]
-* Week 7: Concurrency
+*** Material:
+**** Slides: [[file:Slides/10-lifetimes.pdf][10-lifetimes.pdf]]
+**** Assignment: [[file:Assignments/hw5/hw5.org][hw5.html]]
+* Week 6: Theory ✓
+** Meeting 11
+*** Title: *Mutable References*
+** Meeting 12
+* Week 7: Smart Pointers
 ** Meeting 13
-*** Title: *Message Passing*
+*** Title: *Reference Counting and Internal Mutability*
+*** Reading:
++ RPL 15.4: [[https://doc.rust-lang.org/stable/book/ch15-04-rc.html][~Rc<T>~, the Reference Counted Smart Pointer]]
++ RPL 15.5: [[https://doc.rust-lang.org/stable/book/ch15-05-interior-mutability.html][~RefCell<T>~ and the Interior Mutability Pattern]]
++ RPL 15.6: [[https://doc.rust-lang.org/stable/book/ch15-06-reference-cycles.html][Reference Cycles Can Leak Memory]]
 * Week 8: Midterm
 ** Meeting 14
 *** Title: *Asynchronous Programming*
