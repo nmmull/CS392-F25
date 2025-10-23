@@ -61,7 +61,7 @@ an adjacent topics.
 | [[*Meeting 13][10-16]] | Smart Pointers: ~Rc<T>~ and ~RefCell<T>~    | A5 due                  |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 14][10-21]] | Odds and Ends: Modules, Testing             |                         |
-| [[*Meeting 15][10-23]] | *Midterm Exam*                              | A6 out                  |
+| [[*Meeting 15][10-23]] | *Midterm Exam*                              | A6 out, [[file:midterm/midterm.zip][midterm.zip]]     |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 16][10-28]] | Theory V: Conditionals                      |                         |
 | [[*Meeting 17][10-30]] | Theory VI: Linear Typed Lambda Calculus     | FP outline out, A6 due  |
@@ -183,7 +183,7 @@ an adjacent topics.
 + RPL 15.5: [[https://doc.rust-lang.org/stable/book/ch15-05-interior-mutability.html][~RefCell<T>~ and the Interior Mutability Pattern]]
 + RPL 15.6: [[https://doc.rust-lang.org/stable/book/ch15-06-reference-cycles.html][Reference Cycles Can Leak Memory]]
 *** Material: [[file:Slides/11-refs.pdf][11-refs.pdf]]
-* Week 8: Midterm
+* Week 8: Midterm Exam
 ** Meeting 14
 *** Title: *Crates, Modules, and Testing*
 *** Reading:
@@ -193,28 +193,29 @@ an adjacent topics.
 *** Material:
 + Slides: [[file:Slides/12-crates.pdf][12-crates.pdf]]
 ** Meeting 15
-*** Title: *Midterm Examination*
-* Week 9: Theory
+*** Title: *Midterm Exam*
+*** Material: [[file:midterm/midterm.zip][midterm.zip]]
+* Week 9: Concurrency
 ** Meeting 16
-*** Title: *Conditionals*
+*** Title: *Message Passing*
 ** Meeting 17
-*** Title: *Linear Typed Lambda Calculus*
-* Week 10: TBD
+*** Title: *Asynchronous Programming*
+* Week 10: Unsafe
 ** Meeting 18
 *** Title: *TBD*
 ** Meeting 19
 *** Title: *Project Meetings*
-* Week 11: TBD
+* Week 11: Theory
 ** Meeting 20
 *** Title: *TBD*
 ** Meeting 21
 *** Title: *Project Meetings*
-* Week 12: TBD
+* Week 12: The Compiler
 ** Meeting 22
 *** Title: *TBD*
 ** Meeting 23
 *** Title: *Project Meetings*
-* Week 13: TBD
+* Week 13: Macros
 ** Meeting 24
 *** Title: *TBD*
 * Week 14: Final Project
