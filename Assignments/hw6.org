@@ -1,0 +1,87 @@
+#+title: Assignment 6
+#+HTML_MATHJAX: align: left indent: 2em
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../myStyle.css" />
+#+OPTIONS: html-style:nil H:2 toc:2 todo:nil author:nil date:nil
+#+HTML_LINK_HOME: ../index.html
+The following assignment is due *Thursday 8/30 by 8:00 PM*.  You'll
+need to submit a ~.zip~ file containing a Cargo project named ~hw6~ in
+Gradescope. You can get the setup with:
+#+begin_src
+cargo new hw6
+#+end_src
+You can put your solutions into the file ~hw6/src/main.rs~.  Please
+make sure to run ~cargo clean~ before submitting, i.e., don't sumbit
+a ~target~ directory or a ~.git~ directory.
+
+Given we just had the midterm, I've decided that assignment 6 should
+be simple and low effort.  In this assignment, all you have to do:
+/implement the single-threaded web server in [[https://doc.rust-lang.org/stable/book/ch21-01-single-threaded.html][RPL 21.1]]./ The motivation
+is three-fold:
++ It's a nice exercise in putting together a small Rust project.
++ We'll be talking about concurrency next week, and it will be nice to
+  have this done, in case you want to try to build the multi-threaded
+  version in the textbook.
++ A lot of you have done all the assignments so far, so if this feels
+  contrived, you can skip this one.
+
+The one thing we'll do to make this more interesting: we'll create a
+better interface for requests and responses using all the nice type
+features of Rust:
+#+begin_src rust
+  enum Request {
+      Get(PathBuf), // does not include headers or message
+  }
+
+  enum ParseError {
+      MissingMethod,
+      UnknownMethod,
+      MissingPath,
+      MissingVersion,
+      UnknownVersion,
+      ExtraItem,
+  }
+
+  impl FromStr for Request {
+      type Err = ParseError;
+
+      fn from_str(s: &str) -> Result<Request, ParseError> {
+          todo!()
+      }
+  }
+
+  enum Status {
+      Ok,
+      NotFound,
+  }
+
+  impl fmt::Display for Status {
+      fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error> {
+          todo!()
+      }
+  }
+
+  struct Response {
+      status: Status,
+      contents: String,
+  }
+
+  impl Response {
+      fn new(status: Status, contents: String) -> Response {
+          Response { status, contents }
+      }
+  }
+
+  impl fmt::Display for Response {
+      fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error> {
+          todo!()
+      }
+  }
+#+end_src
+
+As usual, this assignment is a bit open ended. Do as much error
+handling as you feel comfortable doing. A couple things to look at in
+the standard library:
++ [[https://doc.rust-lang.org/std/path/struct.Path.html][std::path::Path]]
++ [[https://doc.rust-lang.org/std/path/struct.PathBuf.html][std::path::PathBuf]]
++ [[https://doc.rust-lang.org/std/str/trait.FromStr.html][std::str::FromStr]]
++ [[https://doc.rust-lang.org/std/fmt/trait.Display.html][std::ftm::Display]]

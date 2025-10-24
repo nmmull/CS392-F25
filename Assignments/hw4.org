@@ -2,7 +2,7 @@
 #+HTML_MATHJAX: align: left indent: 2em
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../myStyle.css" />
 #+OPTIONS: html-style:nil H:2 toc:2 todo:nil author:nil date:nil
-#+HTML_LINK_HOME: ../../material.html
+#+HTML_LINK_HOME: ../index.html
 The following assignment is due *Thursday 8/02 by 8:00 PM*.  You'll
 need to submit a ~.zip~ file containing a Cargo project named ~hw4~ in
 Gradescope. You can get the setup with:

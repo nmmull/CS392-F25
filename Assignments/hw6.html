@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-24 Fri 19:37 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Assignment 6</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="../myStyle.css" />
+</head>
+<body>
+<div id="org-div-home-and-up"><a href="../index.html">↩</a></div><div id="content" class="content">
+<h1 class="title">Assignment 6</h1>
+<p>
+The following assignment is due <b>Thursday 8/30 by 8:00 PM</b>.  You'll
+need to submit a <code>.zip</code> file containing a Cargo project named <code>hw6</code> in
+Gradescope. You can get the setup with:
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">cargo new hw6
+</pre>
+</div>
+<p>
+You can put your solutions into the file <code>hw6/src/main.rs</code>.  Please
+make sure to run <code>cargo clean</code> before submitting, i.e., don't sumbit
+a <code>target</code> directory or a <code>.git</code> directory.
+</p>
+
+<p>
+Given we just had the midterm, I've decided that assignment 6 should
+be simple and low effort.  In this assignment, all you have to do:
+<i>implement the single-threaded web server in <a href="https://doc.rust-lang.org/stable/book/ch21-01-single-threaded.html">RPL 21.1</a>.</i> The motivation
+is three-fold:
+</p>
+<ul class="org-ul">
+<li>It's a nice exercise in putting together a small Rust project.</li>
+<li>We'll be talking about concurrency next week, and it will be nice to
+have this done, in case you want to try to build the multi-threaded
+version in the textbook.</li>
+<li>A lot of you have done all the assignments so far, so if this feels
+contrived, you can skip this one.</li>
+</ul>
+
+<p>
+The one thing we'll do to make this more interesting: we'll create a
+better interface for requests and responses using all the nice type
+features of Rust:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #a020f0;">enum</span> <span style="color: #228b22;">Request</span> {
+    <span style="color: #228b22;">Get</span>(<span style="color: #228b22;">PathBuf</span>), <span style="color: #b22222;">// </span><span style="color: #b22222;">does not include headers or message
+</span>}
+
+<span style="color: #a020f0;">enum</span> <span style="color: #228b22;">ParseError</span> {
+    <span style="color: #228b22;">MissingMethod</span>,
+    <span style="color: #228b22;">UnknownMethod</span>,
+    <span style="color: #228b22;">MissingPath</span>,
+    <span style="color: #228b22;">MissingVersion</span>,
+    <span style="color: #228b22;">UnknownVersion</span>,
+    <span style="color: #228b22;">ExtraItem</span>,
+}
+
+<span style="color: #a020f0;">impl</span> <span style="color: #228b22;">FromStr</span> <span style="color: #a020f0;">for</span> <span style="color: #228b22;">Request</span> {
+    <span style="color: #a020f0;">type</span> <span style="color: #228b22;">Err</span> = <span style="color: #228b22;">ParseError</span>;
+
+    <span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">from_str</span>(<span style="color: #a0522d;">s</span>: <span style="color: #000000; background-color: #ffffff;">&amp;</span><span style="color: #228b22;">str</span>) -&gt; <span style="color: #228b22;">Result</span>&lt;<span style="color: #228b22;">Request</span>, <span style="color: #228b22;">ParseError</span>&gt; {
+        <span style="color: #483d8b;">todo!</span>()
+    }
+}
+
+<span style="color: #a020f0;">enum</span> <span style="color: #228b22;">Status</span> {
+    <span style="color: #228b22;">Ok</span>,
+    <span style="color: #228b22;">NotFound</span>,
+}
+
+<span style="color: #a020f0;">impl</span> <span style="color: #008b8b;">fmt</span>::<span style="color: #228b22;">Display</span> <span style="color: #a020f0;">for</span> <span style="color: #228b22;">Status</span> {
+    <span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">fmt</span>(<span style="color: #000000; background-color: #ffffff;">&amp;</span><span style="color: #a020f0;">self</span>, <span style="color: #a0522d;">f</span>: <span style="color: #000000; background-color: #ffffff;">&amp;</span><span style="color: #a020f0;">mut</span> <span style="color: #008b8b;">fmt</span>::<span style="color: #228b22;">Formatter</span>&lt;'<span style="color: #a0522d;">_</span>&gt;) -&gt; <span style="color: #228b22;">Result</span>&lt;(), <span style="color: #008b8b;">fmt</span>::<span style="color: #228b22;">Error</span>&gt; {
+        <span style="color: #483d8b;">todo!</span>()
+    }
+}
+
+<span style="color: #a020f0;">struct</span> <span style="color: #228b22;">Response</span> {
+    <span style="color: #a0522d;">status</span>: <span style="color: #228b22;">Status</span>,
+    <span style="color: #a0522d;">contents</span>: <span style="color: #228b22;">String</span>,
+}
+
+<span style="color: #a020f0;">impl</span> <span style="color: #228b22;">Response</span> {
+    <span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">new</span>(<span style="color: #a0522d;">status</span>: <span style="color: #228b22;">Status</span>, <span style="color: #a0522d;">contents</span>: <span style="color: #228b22;">String</span>) -&gt; <span style="color: #228b22;">Response</span> {
+        <span style="color: #228b22;">Response</span> { status, contents }
+    }
+}
+
+<span style="color: #a020f0;">impl</span> <span style="color: #008b8b;">fmt</span>::<span style="color: #228b22;">Display</span> <span style="color: #a020f0;">for</span> <span style="color: #228b22;">Response</span> {
+    <span style="color: #a020f0;">fn</span> <span style="color: #0000ff;">fmt</span>(<span style="color: #000000; background-color: #ffffff;">&amp;</span><span style="color: #a020f0;">self</span>, <span style="color: #a0522d;">f</span>: <span style="color: #000000; background-color: #ffffff;">&amp;</span><span style="color: #a020f0;">mut</span> <span style="color: #008b8b;">fmt</span>::<span style="color: #228b22;">Formatter</span>&lt;'<span style="color: #a0522d;">_</span>&gt;) -&gt; <span style="color: #228b22;">Result</span>&lt;(), <span style="color: #008b8b;">fmt</span>::<span style="color: #228b22;">Error</span>&gt; {
+        <span style="color: #483d8b;">todo!</span>()
+    }
+}
+</pre>
+</div>
+
+<p>
+As usual, this assignment is a bit open ended. Do as much error
+handling as you feel comfortable doing. A couple things to look at in
+the standard library:
+</p>
+<ul class="org-ul">
+<li><a href="https://doc.rust-lang.org/std/path/struct.Path.html">std::path::Path</a></li>
+<li><a href="https://doc.rust-lang.org/std/path/struct.PathBuf.html">std::path::PathBuf</a></li>
+<li><a href="https://doc.rust-lang.org/std/str/trait.FromStr.html">std::str::FromStr</a></li>
+<li><a href="https://doc.rust-lang.org/std/fmt/trait.Display.html">std::ftm::Display</a></li>
+</ul>
+</div>
+</body>
+</html>
