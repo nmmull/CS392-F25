@@ -63,22 +63,22 @@ an adjacent topics.
 | [[*Meeting 14][10-21]] | Odds and Ends: Modules, Testing             |                         |
 | [[*Meeting 15][10-23]] | *Midterm Exam*                              | [[file:Assignments/hw6.org][A6 out]], [[file:midterm/midterm.zip][midterm.zip]]     |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 16][10-28]] | Theory V: Conditionals                      |                         |
-| [[*Meeting 17][10-30]] | Theory VI: Linear Typed Lambda Calculus     | FP outline out, A6 due  |
+| [[*Meeting 16][10-28]] | Concurrency I: Message Passing              |                         |
+| [[*Meeting 17][10-30]] | Concurrency II: Asynchronous Programming    | FP outline out, A6 due  |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 18][11-04]] | Advanced I: TBD                             |                         |
-| [[*Meeting 19][11-06]] | Project Meetings                            | FP outline due          |
+| [[*Meeting 18][11-04]] | Unsafe Rust I: The Basics                   |                         |
+| [[*Meeting 19][11-06]] | Unsafe Rust II: Implementing of Vec         | FP outline due          |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 20][11-11]] | Advanced II: TBD                            |                         |
-| [[*Meeting 21][11-13]] | Project Meetings                            | FP check-in 1           |
+| [[*Meeting 20][11-11]] | Theory V: Boxes and Lifetimes               |                         |
+| [[*Meeting 21][11-13]] | Theory VI: Conditionals                     | FP check-in 1           |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 22][11-18]] | Advanced III: TBD                           |                         |
-| [[*Meeting 23][11-20]] | Project Meetings                            | FP check-in 2           |
+| [[*Meeting 22][11-18]] | Compiler I: TBD                             |                         |
+| [[*Meeting 23][11-20]] | Compiler II: TBD                            | FP check-in 2           |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 24][11-25]] | Advanced IV: TBD                            |                         |
+| [[*Meeting 24][11-25]] | Macros                                      |                         |
 | 11-27 | *NO CLASS*                                  | Thanksgiving            |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 25][12-02]] | Advance V: TBD                              |                         |
+| [[*Meeting 25][12-02]] | TBA                                         |                         |
 | [[*Meeting 26][12-04]] | Final Project Presentations                 |                         |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 27][12-09]] | Final Project Presentations                 | FP due                  |
@@ -200,29 +200,32 @@ an adjacent topics.
 * Week 9: Concurrency
 ** Meeting 16
 *** Title: *Message Passing*
+*** Reading: [[https://doc.rust-lang.org/stable/book/ch16-00-concurrency.html][RPL 16: Fearless Concurrency]]
+*** Material: [[file:Slides/13-concurrency.pdf][13-concurrency.pdf]]
 ** Meeting 17
 *** Title: *Asynchronous Programming*
+*** Reading: [[https://doc.rust-lang.org/stable/book/ch17-00-async-await.html][RPL 17: Fundamentals of Asynchronous Programming]]
 * Week 10: Unsafe
 ** Meeting 18
-*** Title: *TBD*
+*** Title: *The Basics*
 ** Meeting 19
-*** Title: *Project Meetings*
+*** Title: *Implementing Vec*
 * Week 11: Theory
 ** Meeting 20
-*** Title: *TBD*
+*** Title: *Boxes and Lifetimes*
 ** Meeting 21
-*** Title: *Project Meetings*
-* Week 12: The Compiler
+*** Title: *Conditionals*
+* Week 12: Compiler
 ** Meeting 22
 *** Title: *TBD*
 ** Meeting 23
-*** Title: *Project Meetings*
+*** Title: *TBD*
 * Week 13: Macros
 ** Meeting 24
-*** Title: *TBD*
+*** Title: *An Overview*
 * Week 14: Final Project
 ** Meeting 25
-*** Title: *TBD*
+*** Title: *TBA*
 ** Meeting 26
 *** Title: *Final Project Presentations*
 * Week 15: Final Project
