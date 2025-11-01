@@ -64,7 +64,7 @@ an adjacent topics.
 | [[*Meeting 15][10-23]] | *Midterm Exam*                              | [[file:Assignments/hw6.org][A6 out]], [[file:midterm/midterm.zip][midterm.zip]]     |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 16][10-28]] | Concurrency I: Message Passing              |                         |
-| [[*Meeting 17][10-30]] | Concurrency II: Asynchronous Programming    | FP outline out, A6 due  |
+| [[*Meeting 17][10-30]] | Concurrency II: Asynchronous Programming    | [[file:Assignments/final-project-outline.org][FP outline out]], A6 due  |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 18][11-04]] | Unsafe Rust I: The Basics                   |                         |
 | [[*Meeting 19][11-06]] | Unsafe Rust II: Implementing of Vec         | FP outline due          |
@@ -197,7 +197,7 @@ an adjacent topics.
 *** Material:
 **** Exam: [[file:midterm/midterm.zip][midterm.zip]]
 **** Assignment: [[file:Assignments/hw6.org][hw6.html]]
-* Week 9: Concurrency
+* Week 9: Concurrency ✓
 ** Meeting 16
 *** Title: *Message Passing*
 *** Reading: [[https://doc.rust-lang.org/stable/book/ch16-00-concurrency.html][RPL 16: Fearless Concurrency]]
@@ -205,6 +205,9 @@ an adjacent topics.
 ** Meeting 17
 *** Title: *Asynchronous Programming*
 *** Reading: [[https://doc.rust-lang.org/stable/book/ch17-00-async-await.html][RPL 17: Fundamentals of Asynchronous Programming]]
+*** Material:
+**** Slides: [[file:Slides/14-async.pdf][14-async.pdf]]
+**** Assignment: [[file:Assignments/final-project-outline.org][final-project-outline.html]]
 * Week 10: Unsafe
 ** Meeting 18
 *** Title: *The Basics*

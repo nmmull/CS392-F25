@@ -1,0 +1,78 @@
+#+title: Final Project Specification
+#+HTML_MATHJAX: align: left indent: 2em
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../myStyle.css" />
+#+OPTIONS: html-style:nil H:2 toc:nil todo:nil author:nil date:nil num:nil
+#+HTML_LINK_HOME: ../index.html
+The following assignment is due *Thursday 11/6 by 8:00 PM*.  You'll
+need to submit a single pdf file in Gradescope.
+
+As you know the last month of the course is dedicated to working on a
+final project of your choosing. The motivation of this is three-fold:
+
++ Rust & Friends is too big of a topic to cover in any reasonable (or
+  even interesting) way in a single semester.  Working on a project
+  forces you to get into the weeds for the part of the topic in which
+  you're most interested.
++ Rust draws a varied crowd, and it's difficult to design a project
+  (let alone a whole course) that will cover the aspects of the topic
+  that are most moving to everyone.
++ For better or worse, having something that you can put on
+  github/your personal webpage is valuable thing these days.
+
+* Final Project Expections
+
+The project itself consists of three pieces:
+
+1. *The Deliverable.* You'll build a thing, be it a piece of code or a
+   piece of text.  This is the primary part that you'll submit on the
+   last day of the course (12/9).  /Some aspect of the deliverable must
+   consist of code./
+2. *The Presentation.* You'll give a 10 minute presentation during one
+   of the last two lecture slots on what you made.  This will be
+   informal, I won't collect any material for this part.  It can
+   consist of a code walk-through, slides, or a discussion. As long as
+   you clearly express what you accomplished in your project.
+3. *The Write-up.* You'll write a one-page extended abstract
+   reflecting on the what you did and your experience working with
+   Rust & Friends (even if you didn't use Rust in your project). The
+   write-up should answer the questions:
+   + What did you set out to accomplish?
+   + To what extent did you accomplish it?
+   + What possible future work can be done?
+   + How was Rust & Friends helpful/harmful in the process?
+   + What are your general impressions of Rust after having taken the
+     course?
+
+Because the project is open-ended, it's possible that parts of the
+above description do not apply well to your potential project. If this
+is the case, please include in your outline how you plan do deviate
+from the above.
+
+* Final Project Outline
+
+For next week you should submit a document answering the following
+prompts.
+
++ *Describe your project.* What are you hoping to accomplish? Be as
+  concrete as possible.  If you're going to write a piece of Rust
+  code, be clear about what you will be submitting to me.
++ *Describe your toolkit.* Give a list of the tools and/or references
+  you will be using for your project. This means papers, crates,
+  tutorials, documentation.  Think about this as an initial
+  bibliography.  You should use formal citations (any format), and
+  include links when possible.  Include as many as you can, ideally
+  something like 5-10 citations (again, it depends a bit on the
+  details of the project).
++ *Describe your timeline.* You'll be required to submit two check-ins
+  before the final project is due. Outline what you hope to have
+  accomplished at each check-in. Again, be as concrete and clear as
+  possible.
+
+* Closing Remarks
+
+This is the first time I'm running a course like this with such
+open-ended projects. It's as much of an experiment for me as it might
+be for you. If I missed anything, or if you have general questions,
+don't hesitate to ask. If you have any feedback, don't hesitate to
+share it. I'm hoping I can use some of these outlines as examples for
+future courses.
