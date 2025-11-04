@@ -66,8 +66,8 @@ an adjacent topics.
 | [[*Meeting 16][10-28]] | Concurrency I: Message Passing              |                         |
 | [[*Meeting 17][10-30]] | Concurrency II: Asynchronous Programming    | [[file:Assignments/final-project-outline.org][FP outline out]], A6 due  |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 18][11-04]] | Unsafe Rust I: The Basics                   |                         |
-| [[*Meeting 19][11-06]] | Unsafe Rust II: Implementing of Vec         | FP outline due          |
+| [[*Meeting 18][11-04]] | Unsafe Rust I: An Introduction              |                         |
+| [[*Meeting 19][11-06]] | Unsafe Rust II: Implementing ~Rc<T>~        | FP outline due          |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 20][11-11]] | Theory V: Boxes and Lifetimes               |                         |
 | [[*Meeting 21][11-13]] | Theory VI: Conditionals                     | FP check-in 1           |
@@ -210,9 +210,17 @@ an adjacent topics.
 **** Assignment: [[file:Assignments/final-project-outline.org][final-project-outline.html]]
 * Week 10: Unsafe
 ** Meeting 18
-*** Title: *The Basics*
+*** Title: *An Introduction*
+**** Reading:
+***** [[https://doc.rust-lang.org/stable/book/ch20-01-unsafe-rust.html][RPL 20.1: Unsafe Rust]]
+***** [[https://doc.rust-lang.org/nomicon/meet-safe-and-unsafe.html][Rustonomicon 1: Meet Safe and Unsafe]]
+***** [[https://rust-unofficial.github.io/too-many-lists/fifth-miri.html][LRWETMLL 6.4: Miri]]
+**** Material:
+***** Slides: [[file:Slides/15-unsafe.pdf][15-unsafe.pdf]]
 ** Meeting 19
-*** Title: *Implementing Vec*
+*** Title: *Implementing ~Rc<T>~*
+**** Reading:
+***** [[https://doc.rust-lang.org/nomicon/vec/vec.html][Rustonomicon 10: Implementing Vec]]
 * Week 11: Theory
 ** Meeting 20
 *** Title: *Boxes and Lifetimes*
