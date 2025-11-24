@@ -28,6 +28,7 @@ an adjacent topics.
   + [[https://doc.rust-lang.org/nomicon/intro.html][Rustonomicon]]
   + [[https://rust-unofficial.github.io/too-many-lists/index.html][Learning Rust With Entirely Too Many Linked Lists]]
   + [[https://doc.rust-lang.org/reference/][The Rust Reference]]
+  + [[https://rustc-dev-guide.rust-lang.org/getting-started.html][Rust Compiler Development Guide]]
   + [[https://homepages.inf.ed.ac.uk/wadler/papers/lineartaste/lineartaste-revised.pdf][A taste of linear logic]]
   + [[https://www.sciencedirect.com/science/article/pii/S0304397599000547][Operational interpretations of linear logic]]
   + [[https://dl.acm.org/doi/10.1145/3443420][A Lightweight Formalism for Reference Lifetimes and Borrowing in Rust]]
@@ -173,8 +174,10 @@ an adjacent topics.
 * Week 6: Theory ✓
 ** Meeting 11
 *** Title: *Mutable References I*
+*** Material: [[file:notes/salt2.pdf][salt2.pdf]]
 ** Meeting 12
 *** Title: *Mutable References II*
+*** Material: [[file:notes/salt2.pdf][salt2.pdf]]
 * Week 7: Smart Pointers ✓
 ** Meeting 13
 *** Title: *Reference Counting and Internal Mutability*
@@ -208,7 +211,7 @@ an adjacent topics.
 *** Material:
 **** Slides: [[file:Slides/14-async.pdf][14-async.pdf]]
 **** Assignment: [[file:Assignments/final-project-outline.org][final-project-outline.html]]
-* Week 10: Unsafe
+* Week 10: Unsafe ✓
 ** Meeting 18
 *** Title: *An Introduction*
 **** Reading:
@@ -220,17 +223,29 @@ an adjacent topics.
 ** Meeting 19
 *** Title: *Implementing ~Rc<T>~*
 **** Reading:
+***** [[https://doc.rust-lang.org/nomicon/subtyping.html][Rustonomicon 3.8: Subtyping and Variance]]
+***** [[https://doc.rust-lang.org/nomicon/dropck.html][Rustonomicon 3.9: Drop Check]]
+***** [[https://doc.rust-lang.org/nomicon/phantom-data.html][Rustonomicon 3.10: PhantomData]]
 ***** [[https://doc.rust-lang.org/nomicon/vec/vec.html][Rustonomicon 10: Implementing Vec]]
-* Week 11: Theory
+***** [[https://doc.rust-lang.org/std/rc/struct.Rc.html][std::rc::Rc]]
+***** [[https://doc.rust-lang.org/std/ptr/struct.NonNull.html][std::ptr::NonNull]]
+***** [[https://doc.rust-lang.org/std/marker/struct.PhantomData.html][std::marker::PhantomData]]
+**** Material: [[file:Code/rc.zip][rc.zip]]
+* Week 11: Theory ✓
 ** Meeting 20
 *** Title: *Boxes and Lifetimes*
 ** Meeting 21
 *** Title: *Conditionals*
-* Week 12: Compiler
+* Week 12: Compiler ✓
 ** Meeting 22
-*** Title: *TBD*
+*** Title: *Type/Borrow Safety*
 ** Meeting 23
-*** Title: *TBD*
+*** Title: *The Compiler*
+**** Reading:
+***** [[https://rustc-dev-guide.rust-lang.org/overview.html][RCDG 29: Overview of the compiler]]
+***** [[https://rustc-dev-guide.rust-lang.org/part-3-intro.html][RCDG 38: Source Code Representation]]
+***** [[https://rustc-dev-guide.rust-lang.org/part-4-intro.html][RCDG 47: Analysis]]
+**** Slides: [[file:Slides/compiler.pdf][compiler.pdf]]
 * Week 13: Macros
 ** Meeting 24
 *** Title: *An Overview*
