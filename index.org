@@ -61,7 +61,7 @@ an adjacent topics.
 | 10-14 | *NO CLASS*                                  | Indigenous Peoples' Day |
 | [[*Meeting 13][10-16]] | Smart Pointers: ~Rc<T>~ and ~RefCell<T>~    | A5 due                  |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 14][10-21]] | Odds and Ends: Modules, Testing             |                         |
+| [[*Meeting 14][10-21]] | Miscellany: Modules, Testing                |                         |
 | [[*Meeting 15][10-23]] | *Midterm Exam*                              | [[file:Assignments/hw6.org][A6 out]], [[file:midterm/midterm.zip][midterm.zip]]     |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 16][10-28]] | Concurrency I: Message Passing              |                         |
@@ -70,17 +70,17 @@ an adjacent topics.
 | [[*Meeting 18][11-04]] | Unsafe Rust I: An Introduction              |                         |
 | [[*Meeting 19][11-06]] | Unsafe Rust II: Implementing ~Rc<T>~        | FP outline due          |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 20][11-11]] | Theory V: Boxes and Lifetimes               |                         |
-| [[*Meeting 21][11-13]] | Theory VI: Conditionals                     | FP check-in 1           |
+| [[*Meeting 20][11-11]] | Theory V: Boxes and Lifetimes (salt3)       |                         |
+| [[*Meeting 21][11-13]] | Theory VI: Boxes and Lifetimes (salt4)      | FP check-in 1           |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 22][11-18]] | Compiler I: TBD                             |                         |
-| [[*Meeting 23][11-20]] | Compiler II: TBD                            | FP check-in 2           |
+| [[*Meeting 22][11-18]] | Theory VII: Type/Borrow Safety              |                         |
+| [[*Meeting 23][11-20]] | Miscellany II: The Compiler                 | FP check-in 2           |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 24][11-25]] | Macros                                      |                         |
+| [[*Meeting 24][11-25]] | Miscellany III : Macros                     |                         |
 | 11-27 | *NO CLASS*                                  | Thanksgiving            |
 |-------+---------------------------------------------+-------------------------|
-| [[*Meeting 25][12-02]] | TBA                                         |                         |
-| [[*Meeting 26][12-04]] | Final Project Presentations                 |                         |
+| [[*Meeting 25][12-02]] | Miscellany IV: Stacked Borrows              |                         |
+| [[*Meeting 26][12-04]] | Miscellany V: OxCaml                        |                         |
 |-------+---------------------------------------------+-------------------------|
 | [[*Meeting 27][12-09]] | Final Project Presentations                 | FP due                  |
 |-------+---------------------------------------------+-------------------------|
@@ -233,9 +233,11 @@ an adjacent topics.
 **** Material: [[file:Code/rc.zip][rc.zip]]
 * Week 11: Theory ✓
 ** Meeting 20
-*** Title: *Boxes and Lifetimes*
+*** Title: *Boxes and Lifetimes I*
+**** Reading: [[https://github.com/nmmull/salt392/blob/main/lib/salt3/spec/salt3.pdf][salt3.pdf]]
 ** Meeting 21
-*** Title: *Conditionals*
+*** Title: *Boxes and Lifetimes II*
+**** Reading: [[https://github.com/nmmull/salt392/blob/main/lib/salt4/spec/salt4.pdf][salt4.pdf]]
 * Week 12: Compiler ✓
 ** Meeting 22
 *** Title: *Type/Borrow Safety*
@@ -246,14 +248,19 @@ an adjacent topics.
 ***** [[https://rustc-dev-guide.rust-lang.org/part-3-intro.html][RCDG 38: Source Code Representation]]
 ***** [[https://rustc-dev-guide.rust-lang.org/part-4-intro.html][RCDG 47: Analysis]]
 **** Slides: [[file:Slides/compiler.pdf][compiler.pdf]]
-* Week 13: Macros
+* Week 13: Macros ✓
 ** Meeting 24
 *** Title: *An Overview*
-* Week 14: Final Project
+**** Reading: [[https://doc.rust-lang.org/stable/book/ch20-05-macros.html][RPL 20.5: Macros]]
+**** Slides: [[file:Slides/macros.pdf][macros.pdf]]
+* Week 14: Miscellany ✓
 ** Meeting 25
-*** Title: *TBA*
+*** Title: *Stacked Borrows*
+**** Reading:
+***** [[https://rust-unofficial.github.io/too-many-lists/fifth-stacked-borrows.html][LRWETMLL 6.5: Stacked Borrows]]
+***** [[https://plv.mpi-sws.org/rustbelt/stacked-borrows/][Stacked Borrows: An Aliasing Model for Rust]]
 ** Meeting 26
-*** Title: *Final Project Presentations*
-* Week 15: Final Project
+*** Title: *Show and Tell*
+* Week 15: Final Projects ✓
 ** Meeting 27
 *** Title: *Final Project Presentations*
